@@ -20,6 +20,14 @@ public:
     void setCode(string Code);
     int getMaxDelivery() const;
     void setMaxDelivery(int MaxDelivery);
+    struct ReservoirHash{
+        int operator()(const Reservoir& reservoir) const{
+            return std::hash<int>()(reservoir.getId());
+        }
+        bool operator()(const Reservoir& reservoir1,const Reservoir& reservoir2) const{
+            return reservoir1.getId()==reservoir2.getId();
+        }
+    };
 private:
     string Reservoir_;
     string Municipality_;
