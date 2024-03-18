@@ -1,7 +1,7 @@
 #include "Pipes.h"
 
 Pipes::Pipes(std::string pSPA, std::string pSPB, int p_c, bool p_d) {
-    this->pipe_capacity = p_d;
+    this->pipe_direction = p_d;
     this->pipe_capacity = p_c;
     this->pipe_service_Point_A = pSPA;
     this->pipe_service_Point_B = pSPB;
