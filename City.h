@@ -15,21 +15,24 @@ public:
     string getCityCode() const;
     void setCityCode(string code);
 
-    int getCityDemand() const;
-    void setCityDemand(int demand);
+    double getCityDemand() const;
+    void setCityDemand(double demand);
 
     int getCityPopulation() const;
     void setCityPopulation(int pop);
 
-    City(string name, int id, string code, int demand, int population);
+    City(string name, int id, string code, double demand, int population);
     City();
-
     struct HashCity {
-        size_t operator()(const City& city) const {
-            return hash<int>{}(city.getCityId());
+        int operator()(const string& city) const {
+            int v=0;
+            for(char i:city){
+                v=37*v+i;
+            }
+            return v;
         }
-        bool operator()(const City& city1, const City& city2) const{
-            return city1.getCityId() == city2.getCityId();
+        bool operator()(const string& city1, const string& city2) const{
+            return city1 == city2;
         }
     };
 
@@ -37,7 +40,7 @@ private:
     string city_name;
     int city_id;
     string city_code;
-    int city_demand;
+    double city_demand;
     int city_population;
 };
 

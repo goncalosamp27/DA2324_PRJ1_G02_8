@@ -17,9 +17,9 @@ using namespace std;
 class parser {
 public:
     parser();
-    unordered_map<string,City> parse_Cities();
+    unordered_map<string,City,City::HashCity> parse_Cities();
     unordered_map<string,Reservoir ,Reservoir::ReservoirHash> parse_Reservoirs();
-    unordered_map<string ,Station> parse_Stations();
+    unordered_map<string ,Station,Station::StationHash> parse_Stations();
     Graph<string> parse_Pipes();
 private:
     Graph<string> water_suply;

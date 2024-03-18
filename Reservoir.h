@@ -21,8 +21,8 @@ public:
     int getMaxDelivery() const;
     void setMaxDelivery(int MaxDelivery);
     struct ReservoirHash{
-        size_t operator()(const string& reservoir) const{
-            size_t v=0;
+        int operator()(const string& reservoir) const{
+            int v=0;
             for(char i:reservoir){
                 v=37*v+i;
             }

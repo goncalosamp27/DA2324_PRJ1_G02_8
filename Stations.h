@@ -16,16 +16,15 @@ public:
     string getCode() const;
     void setCode(string Code);
     struct StationHash{
-        int operator()(const Station& station) const{
-            string c=station.getCode();
+        int operator()(const string& station) const{
             int v=0;
-            for(char i:c){
+            for(char i:station){
                 v=37*v+i;
             }
             return v;
         }
-        bool operator()(const Station& station1,const Station& station2) const{
-            return station1.getCode()==station2.getCode();
+        bool operator()(const string& station1,const string& station2) const{
+            return station1==station2;
         }
     };
 
