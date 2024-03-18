@@ -7,4 +7,8 @@ add_executable(DA2324_PRJ1_G02_8 main.cpp
         City.h
         City.cpp
         Pipes.h
+        Reservoir.h
+        Reservoir.cpp
+        Stations.h
+        Stations.cpp
         Pipes.cpp)
