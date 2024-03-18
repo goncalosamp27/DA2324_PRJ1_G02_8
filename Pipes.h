@@ -18,6 +18,7 @@ public:
 
     Pipe(string pSPA, string pSPB, int p_c, bool p_d);
     Pipe();
+
 private:
     string pipe_service_Point_A;
     string pipe_service_Point_B;

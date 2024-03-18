@@ -1,4 +1,6 @@
 #include <string>
+#include <unordered_map>
+#include <unordered_set>
 
 using namespace std;
 
@@ -21,6 +23,15 @@ public:
 
     City(string name, int id, string code, int demand, int population);
     City();
+
+    struct HashCity {
+        size_t operator()(const City& city) const {
+            return hash<int>{}(city.getCityId());
+        }
+        bool operator()(const City& city1, const City& city2) const{
+            return city1.getCityId() == city2.getCityId();
+        }
+    };
 
 private:
     string city_name;

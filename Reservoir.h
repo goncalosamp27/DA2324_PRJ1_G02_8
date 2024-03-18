@@ -20,6 +20,7 @@ public:
     void setCode(string Code);
     int getMaxDelivery() const;
     void setMaxDelivery(int MaxDelivery);
+
 private:
     string Reservoir_;
     string Municipality_;
