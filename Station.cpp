@@ -4,22 +4,22 @@
 
 #include "Stations.h"
 using namespace std;
-Stations::Stations() {
+Station::Station() {
     Id_ = 0;
     Code_ = "";
 }
-Stations::Stations(int Id, string Code) :
+Station::Station(int Id, string Code) :
         Id_(Id), Code_(Code) {}
-int Stations::getId() const {
+int Station::getId() const {
     return Id_;
 }
-void Stations::setId(int Id) {
+void Station::setId(int Id) {
     Id_ = Id;
 }
-string Stations::getCode() const {
+string Station::getCode() const {
     return Code_;
 }
-void Stations::setCode(string Code) {
+void Station::setCode(string Code) {
     Code_ = Code;
 }
 

@@ -7,10 +7,10 @@
 #include <string>
 using namespace std;
 
-class Stations {
+class Station {
 public:
-    Stations();
-    Stations(int Id,string Code);
+    Station();
+    Station(int Id, string Code);
     int getId() const;
     void setId(int Id);
     string getCode() const;

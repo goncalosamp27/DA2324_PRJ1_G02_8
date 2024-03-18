@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class Pipes {
+class Pipe {
 public:
     string getPipeServicePointA() const;
     void setPipeServicePointA(string servicePointA);
@@ -16,8 +16,8 @@ public:
     bool getPipeDirection() const;
     void setPipeDirection(bool direction);
 
-    Pipes(string pSPA, string pSPB, int p_c, bool p_d);
-    Pipes();
+    Pipe(string pSPA, string pSPB, int p_c, bool p_d);
+    Pipe();
 private:
     string pipe_service_Point_A;
     string pipe_service_Point_B;
