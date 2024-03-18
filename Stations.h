@@ -15,13 +15,17 @@ public:
     void setId(int Id);
     string getCode() const;
     void setCode(string Code);
-
     struct StationHash{
         int operator()(const Station& station) const{
-            return std::hash<int>()(station.getId());
+            string c=station.getCode();
+            int v=0;
+            for(char i:c){
+                v=37*v+i;
+            }
+            return v;
         }
         bool operator()(const Station& station1,const Station& station2) const{
-            return station1.getId()==station2.getId();
+            return station1.getCode()==station2.getCode();
         }
     };
 

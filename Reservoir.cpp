@@ -43,3 +43,6 @@ int Reservoir::getMaxDelivery() const {
 void Reservoir::setMaxDelivery(int MaxDelivery) {
     MaxDelivery_ = MaxDelivery;
 }
+bool Reservoir::operator==(const Reservoir& reservoir) const {
+    return this->getCode() == reservoir.getCode();
+}
