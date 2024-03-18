@@ -81,3 +81,33 @@ unordered_map<string,City,City::HashCity> parser::parse_Cities(){
     }
     return cities_map;
 }
+void parser::parse_Pipes(){
+    ifstream in;
+    in.open("../Project1LargeDataSet/Pipes.csv");
+    string line;
+    if (!in.is_open()){
+        cout << "File not found!"<<'\n';
+    }
+    getline(in, line);
+    while (getline(in, line)) {
+        stringstream ss(line);
+        string Service_Point_A,Service_Point_B;
+        int Capacity;
+        bool Direction;
+        getline(ss, Service_Point_A, ',');
+        getline(ss, Service_Point_B, ',');
+        ss >> Capacity;
+        ss.ignore(1);
+        ss >> Direction;
+        ss.ignore(1);
+        if(Direction == 1){
+            water_suply.addEdge(Service_Point_A,Service_Point_B,Capacity);
+        }
+        if(Direction == 0){
+            water_suply.addEdge(Service_Point_A,Service_Point_B,Capacity);
+            water_suply.addEdge(Service_Point_B,Service_Point_A,Capacity);
+        }
+
+    }
+}
+

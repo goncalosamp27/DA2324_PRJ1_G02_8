@@ -15,4 +15,5 @@ add_executable(DA2324_PRJ1_G02_8 main.cpp
         DataStructures/Graph.h
         DataStructures/MutablePriorityQueue.h
         parser.h
-        parser.cpp)
+        parser.cpp
+        WaterSupplyManagement.cpp)
