@@ -11,4 +11,6 @@ add_executable(DA2324_PRJ1_G02_8 main.cpp
         Reservoir.cpp
         Stations.h
         Stations.cpp
-        Pipes.cpp)
+        Pipes.cpp
+        DataStructures/Graph.h
+        DataStructures/MutablePriorityQueue.h)
