@@ -2,7 +2,7 @@
 // Created by joao on 18-03-2024.
 //
 
-#include "parser.h"
+#include "h/parser.h"
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -31,6 +31,8 @@ unordered_map<string,Reservoir, Reservoir::ReservoirHash> parser::parse_Reservoi
         water_suply.addVertex(code);
     }
     return reservoir_map;
+}
+parser::parser() {
 }
 unordered_map<string ,Station,Station::StationHash> parser::parse_Stations(){
     unordered_map<string,Station,Station::StationHash> stations_map;
@@ -77,7 +79,7 @@ unordered_map<string,City,City::HashCity> parser::parse_Cities(){
         ss >> population;
         ss.ignore(1);
         City city(City_name,id,Code,demand,population);
-        water_suply.addVertex(Code);
+        water_suply.addVertex(City_name);
     }
     return cities_map;
 }
@@ -109,5 +111,9 @@ void parser::parse_Pipes(){
         }
 
     }
+}
+
+Graph<string> parser::getWater_Suply() {
+    return water_suply;
 }
 

@@ -1,6 +1,8 @@
 #include <iostream>
-
+#include "src/h/WManager.h"
+#include "DataStructures/Graph.h"
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    WManager Manager;
+    cout << Manager.MaxFlow("Lisboa") << endl;
     return 0;
 }

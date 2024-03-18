@@ -1,3 +1,5 @@
+#ifndef DA2324_PRJ1_G02_8_CITY_H
+#define DA2324_PRJ1_G02_8_CITY_H
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
@@ -44,3 +46,4 @@ private:
     int city_population;
 };
 
+#endif //DA2324_PRJ1_G02_8_CITY_H

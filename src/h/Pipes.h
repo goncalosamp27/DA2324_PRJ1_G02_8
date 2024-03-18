@@ -1,8 +1,10 @@
+#ifndef DA2324_PRJ1_G02_8_PIPES_H
+#define DA2324_PRJ1_G02_8_PIPES_H
 #include <string>
 
 using namespace std;
 
-class Pipe {
+class Pipes {
 public:
     string getPipeServicePointA() const;
     void setPipeServicePointA(string servicePointA);
@@ -16,8 +18,8 @@ public:
     bool getPipeDirection() const;
     void setPipeDirection(bool direction);
 
-    Pipe(string pSPA, string pSPB, int p_c, bool p_d);
-    Pipe();
+    Pipes(string pSPA, string pSPB, int p_c, bool p_d);
+    Pipes();
 
 private:
     string pipe_service_Point_A;
@@ -26,3 +28,4 @@ private:
     bool pipe_direction;
 };
 
+#endif //DA2324_PRJ1_G02_8_PIPES_H

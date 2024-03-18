@@ -2,7 +2,7 @@
 // Created by joao on 18-03-2024.
 //
 
-#include "Stations.h"
+#include "h/Stations.h"
 using namespace std;
 Station::Station() {
     Id_ = 0;
