@@ -15,6 +15,7 @@ public:
     void setId(int Id);
     string getCode() const;
     void setCode(string Code);
+
     struct StationHash{
         int operator()(const Station& station) const{
             return std::hash<int>()(station.getId());
@@ -23,6 +24,7 @@ public:
             return station1.getId()==station2.getId();
         }
     };
+
 private:
     int Id_;
     string Code_;
