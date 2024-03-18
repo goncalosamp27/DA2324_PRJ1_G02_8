@@ -7,10 +7,10 @@
 #include "../DataStructures/Graph.h"
 WManager::WManager() {
     parser parser;
-    parser.parse_Pipes();
     city_map = parser.parse_Cities();
     reservoir_map = parser.parse_Reservoirs();
     station_map = parser.parse_Stations();
+    parser.parse_Pipes();
     water_supply = parser.getWater_Suply();
 }
 

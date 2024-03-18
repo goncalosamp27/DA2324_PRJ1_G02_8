@@ -79,7 +79,8 @@ unordered_map<string,City,City::HashCity> parser::parse_Cities(){
         ss >> population;
         ss.ignore(1);
         City city(City_name,id,Code,demand,population);
-        water_suply.addVertex(City_name);
+        cities_map.insert({Code,city});
+        water_suply.addVertex(Code);
     }
     return cities_map;
 }
