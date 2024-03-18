@@ -2,7 +2,7 @@
 // Created by joao on 18-03-2024.
 //
 
-#include "Reservoir.h"
+#include "h/Reservoir.h"
 using namespace std;
 Reservoir::Reservoir() {
     Reservoir_ = "";
@@ -42,4 +42,7 @@ int Reservoir::getMaxDelivery() const {
 }
 void Reservoir::setMaxDelivery(int MaxDelivery) {
     MaxDelivery_ = MaxDelivery;
+}
+bool Reservoir::operator==(const Reservoir& reservoir) const {
+    return this->getCode() == reservoir.getCode();
 }

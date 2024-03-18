@@ -20,6 +20,20 @@ public:
     void setCode(string Code);
     int getMaxDelivery() const;
     void setMaxDelivery(int MaxDelivery);
+    struct ReservoirHash{
+        int operator()(const string& reservoir) const{
+            int v=0;
+            for(char i:reservoir){
+                v=37*v+i;
+            }
+            return v;
+        }
+        bool operator()(const string& reservoir1,const string& reservoir2) const{
+            return reservoir1==reservoir2;
+        }
+    };
+    bool operator==(const Reservoir& reservoir) const;
+
 private:
     string Reservoir_;
     string Municipality_;

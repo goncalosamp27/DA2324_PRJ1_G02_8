@@ -1,3 +1,5 @@
+#ifndef DA2324_PRJ1_G02_8_PIPES_H
+#define DA2324_PRJ1_G02_8_PIPES_H
 #include <string>
 
 using namespace std;
@@ -18,6 +20,7 @@ public:
 
     Pipes(string pSPA, string pSPB, int p_c, bool p_d);
     Pipes();
+
 private:
     string pipe_service_Point_A;
     string pipe_service_Point_B;
@@ -25,3 +28,4 @@ private:
     bool pipe_direction;
 };
 
+#endif //DA2324_PRJ1_G02_8_PIPES_H
