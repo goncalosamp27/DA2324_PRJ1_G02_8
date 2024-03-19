@@ -18,6 +18,7 @@ public:
     double MaxFlow(string city);
     void set_all_flow();
     void RemoveReservoir();
+    void removePS();
     struct HashCityFlow {
         int operator()(const pair<string ,City>& city) const {
             int v = 0;
