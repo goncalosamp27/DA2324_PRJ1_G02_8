@@ -44,7 +44,7 @@ void WManager::removePS()
         for(Vertex<string> * vert : water_supply.getVertexSet())
         {
             string code = vert->getInfo();
-            if(code[0] == 'P')
+            if(!code.empty() && code[0] == 'P')
             {
                 auto aux = water_supply;
                 water_supply.removeVertex(code);
@@ -63,5 +63,4 @@ void WManager::removePS()
         cout << "Removing the Pumping Station: " << s.first << " would not affect the flow in: " << s.second << "." << endl;
     }
     cout << endl;
-
 }
