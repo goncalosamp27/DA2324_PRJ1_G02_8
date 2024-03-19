@@ -27,6 +27,9 @@ void Menu::startMenu() {
                 MetricsMenu();
                 break;
             case 2:
+                RealibilityMenu();
+                break;
+            case 3:
                 c = false;
                 cout << "Goodbye!" << endl;
                 break;
@@ -50,30 +53,29 @@ void Menu::MetricsMenu() {
         cout << "Choose an option: ";
         int option;
         cin >> option;
+        unordered_map<pair<string ,City>,double,WManager::HashCityFlow> city_flow = manager.getCityFlow();
         double max_flow = 0;
         string name;
         switch (option) {
             case 1:
                 cout << "Please enter the city name" << endl;
                 cin >> name;
-                for (auto& city : parser.parse_Cities()){
-                    max_flow = manager.MaxFlow(city.first);
-                    if (name == city.second.getCityName()){
-                        cout << city.second.getCityName() << " : " <<  max_flow  << " m3/s";
+                for(auto city : city_flow){
+                    if(name  == city.first.second.getCityName()){
+                        cout << city.first.second.getCityName() << " : " <<  city.second << " m3/s" << endl;
                     }
                 }
                 break;
             case 2:
-                for (auto& city : parser.parse_Cities()){
-                    max_flow = manager.MaxFlow(city.first);
-                    cout << city.second.getCityName() << " : " <<  max_flow  << " m3/s" << endl;
+                for(auto city : city_flow){
+                    cout << city.first.second.getCityName() << " : " <<  city.second  << " m3/s" << endl;
                 }
                 break;
             case 3:
-                for (auto& city : parser.parse_Cities()){
-                    max_flow = manager.MaxFlow(city.first);
-                    if (max_flow < city.second.getCityDemand()){
-                        cout << city.second.getCityName() << " needs " <<  city.second.getCityDemand()  << " m3/s";
+                for (auto& city : city_flow){
+                    max_flow = city.second;
+                    if (max_flow < city.first.second.getCityDemand()){
+                        cout << city.first.second.getCityName() << " needs " <<  city.first.second.getCityDemand()  << " m3/s";
                         cout << " and only has " << max_flow << " m3/s" << endl;
                     }
                 }
@@ -102,6 +104,7 @@ void Menu::RealibilityMenu() {
         cin >> option;
         switch (option) {
             case 1:
+                manager.RemoveReservoir();
                 break;
             case 2:
                 break;
