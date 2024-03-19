@@ -16,6 +16,7 @@ class WManager {
 public:
     WManager();
     double MaxFlow(string city);
+    void removePS();
 
 private:
     unordered_map<string,City,City::HashCity> city_map;

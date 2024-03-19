@@ -27,8 +27,7 @@ void Menu::startMenu() {
                 MetricsMenu();
                 break;
             case 2:
-                c = false;
-                cout << "Goodbye!" << endl;
+                RealibilityMenu();
                 break;
             default:
                 cout << "Invalid Input!"<< endl;
@@ -104,6 +103,7 @@ void Menu::RealibilityMenu() {
             case 1:
                 break;
             case 2:
+                manager.removePS();
                 break;
             case 3:
                 break;
