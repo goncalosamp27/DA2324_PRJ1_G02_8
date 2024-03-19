@@ -12,18 +12,19 @@ Menu::Menu(WManager manager, Parser parser) {
 void Menu::startMenu() {
     int c = true;
     while(c){
-        cout << "-----------------------------------------" << endl;
-        cout << "|Welcome to the Water Management System |" << endl;
-        cout << "|Please select an option                |" << endl;
-        cout << "|1. Basic Service Metrics               |" << endl;
-        cout << "|2. Exit                                |"<< endl;
-        cout << "-----------------------------------------" << endl;
+        cout << "---------------------------------------------" << endl;
+        cout << "|Welcome to the Water Management System     |" << endl;
+        cout << "|Please select an option                    |" << endl;
+        cout << "|1. Basic Service Metrics                   |" << endl;
+        cout << "|2. Reliability and Sensitivity to Failures |" << endl;
+        cout << "|3. Exit                                    |"<< endl;
+        cout << "---------------------------------------------" << endl;
         cout << "Choose an option: ";
         int option;
         cin >> option;
         switch (option) {
             case 1:
-                Menu1();
+                MetricsMenu();
                 break;
             case 2:
                 c = false;
@@ -36,8 +37,7 @@ void Menu::startMenu() {
     }
 
 }
-
-void Menu::Menu1() {
+void Menu::MetricsMenu() {
     int c = true;
     while(c){
         cout << "-------------------------------------" << endl;
@@ -86,5 +86,32 @@ void Menu::Menu1() {
                 cout << "Invalid option" << endl;
         }
     }
-
+}
+void Menu::RealibilityMenu() {
+    int c = true;
+    while(c){
+        cout << "-------------------------------------" << endl;
+        cout << "|Please select an option            |" << endl;
+        cout << "|1. Reservoir Out                   |"<< endl;
+        cout << "|2. Pumping Station Out             |" << endl;
+        cout << "|3. Pipeline Out                    |" << endl;
+        cout << "|4. Exit                            |" << endl;
+        cout << "-------------------------------------" << endl;
+        cout << "Choose an option: ";
+        int option;
+        cin >> option;
+        switch (option) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                c = false;
+                break;
+            default:
+                cout << "Invalid Input!"<<'\n';
+        }
+    }
 }
