@@ -11,7 +11,7 @@
 #include "Pipes.h"
 #include "Reservoir.h"
 #include "Stations.h"
-#include "parser.h"
+#include "Parser.h"
 using namespace std;
 class WManager {
 public:

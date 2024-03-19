@@ -14,8 +14,8 @@ add_executable(DA2324_PRJ1_G02_8 main.cpp
         src/cpp/Pipes.cpp
         DataStructures/Graph.h
         DataStructures/MutablePriorityQueue.h
-        src/h/parser.h
-        src/cpp/parser.cpp
+        src/h/Parser.h
+        src/cpp/Parser.cpp
         src/h/WManager.h
         src/cpp/WManager.cpp
         src/h/Menu.h

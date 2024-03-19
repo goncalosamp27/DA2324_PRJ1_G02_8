@@ -2,7 +2,7 @@
 // Created by joao on 18-03-2024.
 //
 
-#include "../h/parser.h"
+#include "../h/Parser.h"
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -116,29 +116,6 @@ void Parser::parse_Pipes(){
 
 Graph<string> Parser::getWater_Suply() {
     return water_suply;
-}
-
-string Parser::getCityName(string code) {
-    for(auto& city : parse_Cities()){
-        if(city.first == code){
-            return city.second.getCityName();
-        }
-    }
-}
-
-string Parser::findCityCode(string name) {
-    for(auto& city : parse_Cities()){
-        if(city.second.getCityName() == name){
-            return city.first;
-        }
-    }
-}
-City Parser::findCity(string code) {
-    for(auto& city : parse_Cities()){
-        if(city.first == code){
-            return city.second;
-        }
-    }
 }
 
 

@@ -3,7 +3,7 @@
 //
 
 #include "../h/WManager.h"
-#include "../h/parser.h"
+#include "../h/Parser.h"
 #include "../../DataStructures/Graph.h"
 WManager::WManager() {
     Parser parser;
