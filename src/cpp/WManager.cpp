@@ -19,7 +19,7 @@ double WManager::MaxFlow(string city) {
     double max_flow = 0;
     initializeFlow(&water_supply);
     for (auto& reservoir : reservoir_map){
-        edmondsKarp(&water_supply,reservoir.first,city);
+        edmondsKarp(&water_supply,reservoir.second,city);
     }
     for(auto& pipe : water_supply.getVertexSet()){
         for(auto& edge : pipe->getAdj()){

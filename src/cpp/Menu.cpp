@@ -47,7 +47,7 @@ void Menu::Menu1() {
             for (auto& city : parser.parse_Cities()){
                 max_flow = manager.MaxFlow(city.first);
                 if (name == city.second.getCityName()){
-                    cout << city.second.getCityName() << " : " <<  max_flow  << " m3/s";
+                    cout << city.second.getCityName() << " : " <<  max_flow  << " m3/s" << endl;
                 }
             }
             break;
