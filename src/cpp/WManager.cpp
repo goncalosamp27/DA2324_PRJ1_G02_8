@@ -15,7 +15,6 @@ WManager::WManager() {
 }
 
 double WManager::MaxFlow(string city) {
-    Parser parser;
     double max_flow = 0;
     initializeFlow(&water_supply);
     for (auto& reservoir : reservoir_map){
