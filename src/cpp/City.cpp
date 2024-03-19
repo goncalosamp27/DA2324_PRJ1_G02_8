@@ -24,4 +24,7 @@ void City::setCityDemand(double demand) {this->city_demand = demand;}
 
 int City::getCityPopulation() const {return city_population;}
 void City::setCityPopulation(int pop) {this->city_population = pop;}
+bool City::operator==(const City& other) const {
 
+    return city_code == other.getCityCode();
+}

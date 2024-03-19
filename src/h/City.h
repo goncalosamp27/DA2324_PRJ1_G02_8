@@ -25,6 +25,7 @@ public:
 
     City(string name, int id, string code, double demand, int population);
     City();
+    bool operator==(const City& other) const;
     struct HashCity {
         int operator()(const string& city) const {
             int v=0;

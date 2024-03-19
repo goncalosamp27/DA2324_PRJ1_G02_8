@@ -12,8 +12,8 @@ class Menu {
 public:
     Menu(WManager manager, Parser parser);
     void startMenu();
-    void Menu1();
-private:
+    void MetricsMenu();
+    void RealibilityMenu();
     WManager manager;
     Parser parser;
 };
