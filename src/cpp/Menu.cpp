@@ -34,8 +34,8 @@ void Menu::startMenu() {
 
         }
     }
-
 }
+
 void Menu::MetricsMenu() {
     int c = true;
     while(c){

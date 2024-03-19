@@ -1,7 +1,3 @@
-//
-// Created by joao on 18-03-2024.
-//
-
 #include "../h/Parser.h"
 #include <fstream>
 #include <sstream>
@@ -32,8 +28,8 @@ unordered_map<string,Reservoir, Reservoir::ReservoirHash> Parser::parse_Reservoi
     }
     return reservoir_map;
 }
-Parser::Parser() {
-}
+Parser::Parser() {}
+
 unordered_map<string ,Station,Station::StationHash> Parser::parse_Stations(){
     unordered_map<string,Station,Station::StationHash> stations_map;
     ifstream in;
