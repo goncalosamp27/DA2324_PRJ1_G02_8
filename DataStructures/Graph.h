@@ -10,6 +10,7 @@
 #include <limits>
 #include <algorithm>
 #include "../DataStructures/MutablePriorityQueue.h"
+#include "../src/h/Reservoir.h"
 
 template <class T>
 class Edge;
@@ -706,7 +707,7 @@ bool findAugmentingPath(Graph<T> *g, Vertex<T> *s, Vertex<T> *t) {
 }
 // Function to find the minimum residual capacity along the augmenting path
 template <class T>
-double findMinResidualAlongPath(Vertex<T> *s, Vertex<T> *t) {
+double findMinResidualAlongPath(Vertex<T> *s, Vertex<T> *t, Graph<T> *g) {
     double f = INF;
 // Traverse the augmenting path to find the minimum residual capacity
     for (auto v = t; v != s; ) {
@@ -725,7 +726,7 @@ double findMinResidualAlongPath(Vertex<T> *s, Vertex<T> *t) {
 }
 // Function to augment flow along the augmenting path with the given flow value
 template <class T>
-void augmentFlowAlongPath(Vertex<T> *s, Vertex<T> *t, double f) {
+void augmentFlowAlongPath(Vertex<T> *s, Vertex<T> *t, double f, Graph<T> *g) {
 // Traverse the augmenting path and update the flow values accordingly
     for (auto v = t; v != s; ) {
         auto e = v->getPath();
@@ -749,18 +750,24 @@ void initializeFlow(Graph<T> *g) {
     }
 }
 // Main function implementing the Edmonds-Karp algorithm
-template <class T>
-void edmondsKarp(Graph<T> *g, const T & source, const T & target) {
+template <class T,class T2>
+void edmondsKarp(Graph<T> *g, const T2 & source, const T & target) {
 // Find source and target vertices in the graph
-    Vertex<T>* s = g->findVertex(source);
+    double max_flow = source.getMaxDelivery();
+    Vertex<T>* s = g->findVertex(source.getCode());
     Vertex<T>* t = g->findVertex(target);
 // Validate source and target vertices
     if (s == nullptr || t == nullptr || s == t)
         throw std::logic_error("Invalid source and/or target vertex");
 
-    while( findAugmentingPath(g, s, t) ) {
-        double f = findMinResidualAlongPath(s, t);
-        augmentFlowAlongPath(s, t, f);
+    while(findAugmentingPath(g, s, t) and max_flow > 0) {
+        double f = findMinResidualAlongPath(s, t, g);
+        if (f > max_flow) {
+            augmentFlowAlongPath(s, t, max_flow, g);
+            break;
+        }
+        max_flow -= f;
+        augmentFlowAlongPath(s, t, f, g);
     }
 }
 #endif /* DA_TP_CLASSES_GRAPH */
