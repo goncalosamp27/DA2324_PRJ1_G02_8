@@ -1,4 +1,4 @@
-#include "h/Pipes.h"
+#include "../h/Pipes.h"
 
 Pipes::Pipes(std::string pSPA, std::string pSPB, int p_c, bool p_d) {
     this->pipe_direction = p_d;
