@@ -40,6 +40,7 @@ private:
     unordered_map<string,Reservoir ,Reservoir::ReservoirHash> reservoir_map;
     unordered_map<string ,Station,Station::StationHash> station_map;
     Graph<string> water_supply;
+    Parser parser;
 };
 
 

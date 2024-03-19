@@ -16,13 +16,19 @@ using namespace std;
 class Parser {
 public:
     Parser();
-    unordered_map<string,City,City::HashCity> parse_Cities();
-    unordered_map<string,Reservoir ,Reservoir::ReservoirHash> parse_Reservoirs();
-    unordered_map<string ,Station,Station::StationHash> parse_Stations();
+    void parse_Cities();
+    void parse_Reservoirs();
+    void parse_Stations();
     void parse_Pipes();
     Graph<string> getWater_Suply();
+    unordered_map<string,Reservoir, Reservoir::ReservoirHash> getReservoirMap();
+    unordered_map<string,City,City::HashCity> getCityMap();
+    unordered_map<string ,Station,Station::StationHash> getStationMap();
 private:
     Graph<string> water_suply;
+    unordered_map<string,Reservoir, Reservoir::ReservoirHash> reservoir_map;
+    unordered_map<string,City,City::HashCity> cities_map;
+    unordered_map<string ,Station,Station::StationHash> stations_map;
 };
 
 

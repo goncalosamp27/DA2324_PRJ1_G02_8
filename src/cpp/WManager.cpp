@@ -6,11 +6,13 @@
 #include "../h/Parser.h"
 #include "../../DataStructures/Graph.h"
 WManager::WManager() {
-    Parser parser;
-    city_map = parser.parse_Cities();
-    reservoir_map = parser.parse_Reservoirs();
-    station_map = parser.parse_Stations();
+    parser.parse_Cities();
+    parser.parse_Reservoirs();
+    parser.parse_Stations();
     parser.parse_Pipes();
+    city_map = parser.getCityMap();
+    station_map = parser.getStationMap();
+    reservoir_map = parser.getReservoirMap();
     water_supply = parser.getWater_Suply();
     set_all_flow();
 }
@@ -42,15 +44,19 @@ void WManager::set_all_flow() {
 void WManager::RemoveReservoir() {
     string reservoir;
     cout << "Code of the Reservoir: ";
-    cin >> reservoir;
+    getline(cin>>ws,reservoir);
+    vector<pair<pair<string,string>,double>> edges;
     auto it = water_supply.findVertex(reservoir);
     if(it == NULL){
         cout << "Invalid Input"<<'\n';
         return;
     }
-    Graph<string> temp_Water_Suply = water_supply;
-    unordered_map<string,Reservoir ,Reservoir::ReservoirHash> temp_reservoir_map = reservoir_map;
+    for(auto e: it->getAdj()){
+        pair<pair<string,string>,double> temp= {{e->getOrig()->getInfo(),e->getDest()->getInfo()},e->getWeight()};
+        edges.push_back(temp);
+    }
     auto itr = reservoir_map.find(reservoir);
+    pair<string ,Reservoir> old = *itr;
     reservoir_map.erase(itr);
     water_supply.removeVertex(reservoir);
     double max_flow;
@@ -61,6 +67,9 @@ void WManager::RemoveReservoir() {
             cout << itr->first.second.getCityName() << " : "<< max_flow << " m3/s" << endl;
         }
     }
-    water_supply = temp_Water_Suply;
-    reservoir_map = temp_reservoir_map;
+    water_supply.addVertex(reservoir);
+    for(auto e : edges){
+        water_supply.addEdge(e.first.first,e.first.second,e.second);
+    }
+    reservoir_map.insert(old);
 }

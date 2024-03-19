@@ -11,13 +11,13 @@ Menu::Menu(WManager manager, Parser parser) {
 
 void Menu::startMenu() {
     int c = true;
-    while(c){
+    while (c) {
         cout << "---------------------------------------------" << endl;
         cout << "|Welcome to the Water Management System     |" << endl;
         cout << "|Please select an option                    |" << endl;
         cout << "|1. Basic Service Metrics                   |" << endl;
         cout << "|2. Reliability and Sensitivity to Failures |" << endl;
-        cout << "|3. Exit                                    |"<< endl;
+        cout << "|3. Exit                                    |" << endl;
         cout << "---------------------------------------------" << endl;
         cout << "Choose an option: ";
         int option;
@@ -34,12 +34,12 @@ void Menu::startMenu() {
                 cout << "Goodbye!" << endl;
                 break;
             default:
-                cout << "Invalid Input!"<< endl;
+                cout << "Invalid Input!" << endl;
 
         }
     }
-
-void Menu::MetricsMenu() {
+}
+void Menu::MetricsMenu(){
     int c = true;
     while(c){
         cout << "-------------------------------------" << endl;
