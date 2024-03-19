@@ -6,8 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-unordered_map<string,Reservoir, Reservoir::ReservoirHash> Parser::parse_Reservoirs() {
-    unordered_map<string,Reservoir,Reservoir::ReservoirHash> reservoir_map;
+void Parser::parse_Reservoirs() {
     ifstream in;
     in.open("../Project1LargeDataSet/Reservoir.csv");
     string line;
@@ -30,12 +29,10 @@ unordered_map<string,Reservoir, Reservoir::ReservoirHash> Parser::parse_Reservoi
         reservoir_map.insert({code, reservoir});
         water_suply.addVertex(code);
     }
-    return reservoir_map;
 }
 Parser::Parser() {
 }
-unordered_map<string ,Station,Station::StationHash> Parser::parse_Stations(){
-    unordered_map<string,Station,Station::StationHash> stations_map;
+void Parser::parse_Stations(){
     ifstream in;
     in.open("../Project1LargeDataSet/Stations.csv");
     string line;
@@ -54,10 +51,8 @@ unordered_map<string ,Station,Station::StationHash> Parser::parse_Stations(){
      stations_map.insert({Code,station});
      water_suply.addVertex(Code);
     }
-    return stations_map;
 }
-unordered_map<string,City,City::HashCity> Parser::parse_Cities(){
-    unordered_map<string,City,City::HashCity> cities_map;
+void Parser::parse_Cities(){
     ifstream in;
     in.open("../Project1LargeDataSet/Cities.csv");
     string line;
@@ -82,7 +77,6 @@ unordered_map<string,City,City::HashCity> Parser::parse_Cities(){
         cities_map.insert({Code,city});
         water_suply.addVertex(Code);
     }
-    return cities_map;
 }
 void Parser::parse_Pipes(){
     ifstream in;
@@ -117,5 +111,12 @@ void Parser::parse_Pipes(){
 Graph<string> Parser::getWater_Suply() {
     return water_suply;
 }
-
-
+unordered_map<string,Reservoir, Reservoir::ReservoirHash> Parser::getReservoirMap(){
+    return reservoir_map;
+}
+unordered_map<string,City,City::HashCity> Parser::getCityMap() {
+    return cities_map;
+}
+unordered_map<string ,Station,Station::StationHash> Parser::getStationMap() {
+    return stations_map;
+}
