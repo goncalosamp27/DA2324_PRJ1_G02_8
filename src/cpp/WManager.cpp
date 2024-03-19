@@ -115,7 +115,7 @@ void WManager::removePS()
     for(auto station : station_map){
         auto itr = std::find(res.begin(), res.end(),station.first);
             if(itr == res.end()){
-                cout << "The Station " << station.first << " Will not affect the flow if removed!\n";
+                cout << "The Station " << station.first << " Will not affect the flow in any city if removed!\n";
             }
     }
 }
