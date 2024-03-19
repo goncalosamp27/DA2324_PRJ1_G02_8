@@ -14,14 +14,17 @@
 using namespace std;
 
 
-class parser {
+class Parser {
 public:
-    parser();
+    Parser();
     unordered_map<string,City,City::HashCity> parse_Cities();
     unordered_map<string,Reservoir ,Reservoir::ReservoirHash> parse_Reservoirs();
     unordered_map<string ,Station,Station::StationHash> parse_Stations();
     void parse_Pipes();
     Graph<string> getWater_Suply();
+    string getCityName(string code);
+    string findCityCode(string name);
+    City findCity(string code);
 private:
     Graph<string> water_suply;
 };

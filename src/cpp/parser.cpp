@@ -2,11 +2,11 @@
 // Created by joao on 18-03-2024.
 //
 
-#include "h/parser.h"
+#include "../h/parser.h"
 #include <fstream>
 #include <sstream>
 #include <iostream>
-unordered_map<string,Reservoir, Reservoir::ReservoirHash> parser::parse_Reservoirs() {
+unordered_map<string,Reservoir, Reservoir::ReservoirHash> Parser::parse_Reservoirs() {
     unordered_map<string,Reservoir,Reservoir::ReservoirHash> reservoir_map;
     ifstream in;
     in.open("../Project1LargeDataSet/Reservoir.csv");
@@ -32,9 +32,9 @@ unordered_map<string,Reservoir, Reservoir::ReservoirHash> parser::parse_Reservoi
     }
     return reservoir_map;
 }
-parser::parser() {
+Parser::Parser() {
 }
-unordered_map<string ,Station,Station::StationHash> parser::parse_Stations(){
+unordered_map<string ,Station,Station::StationHash> Parser::parse_Stations(){
     unordered_map<string,Station,Station::StationHash> stations_map;
     ifstream in;
     in.open("../Project1LargeDataSet/Stations.csv");
@@ -56,7 +56,7 @@ unordered_map<string ,Station,Station::StationHash> parser::parse_Stations(){
     }
     return stations_map;
 }
-unordered_map<string,City,City::HashCity> parser::parse_Cities(){
+unordered_map<string,City,City::HashCity> Parser::parse_Cities(){
     unordered_map<string,City,City::HashCity> cities_map;
     ifstream in;
     in.open("../Project1LargeDataSet/Cities.csv");
@@ -84,7 +84,7 @@ unordered_map<string,City,City::HashCity> parser::parse_Cities(){
     }
     return cities_map;
 }
-void parser::parse_Pipes(){
+void Parser::parse_Pipes(){
     ifstream in;
     in.open("../Project1LargeDataSet/Pipes.csv");
     string line;
@@ -114,7 +114,31 @@ void parser::parse_Pipes(){
     }
 }
 
-Graph<string> parser::getWater_Suply() {
+Graph<string> Parser::getWater_Suply() {
     return water_suply;
 }
+
+string Parser::getCityName(string code) {
+    for(auto& city : parse_Cities()){
+        if(city.first == code){
+            return city.second.getCityName();
+        }
+    }
+}
+
+string Parser::findCityCode(string name) {
+    for(auto& city : parse_Cities()){
+        if(city.second.getCityName() == name){
+            return city.first;
+        }
+    }
+}
+City Parser::findCity(string code) {
+    for(auto& city : parse_Cities()){
+        if(city.first == code){
+            return city.second;
+        }
+    }
+}
+
 

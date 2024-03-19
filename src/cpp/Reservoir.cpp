@@ -2,7 +2,7 @@
 // Created by joao on 18-03-2024.
 //
 
-#include "h/Reservoir.h"
+#include "../h/Reservoir.h"
 using namespace std;
 Reservoir::Reservoir() {
     Reservoir_ = "";
