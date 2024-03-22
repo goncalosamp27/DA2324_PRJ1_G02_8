@@ -119,12 +119,36 @@ void WManager::removePS()
             }
     }
 }
+void WManager::TotalMaxFlow() {
+    int sum = 0;
+    for(auto city : city_flow){
+        sum += city.second;
+    }
+    cout<< "The total max flow is: " << sum << " m3/s!"<< endl;
+}
 void WManager::removePipesCities() {
-    return;
+    string city;
+    cout << "Code of the City: ";
+    getline(cin >> ws, city);
+    for (auto vertex: water_supply.getVertexSet()) {
+        City cidade = city_map.find(city)->second;
+        for (auto edge: vertex->getAdj()) {
+            pair<pair<string, string>, double> temp = {{edge->getOrig()->getInfo(), edge->getDest()->getInfo()},
+                                                       edge->getWeight()};
+            water_supply.removeEdge(edge->getOrig()->getInfo(), edge->getDest()->getInfo());
+            double max_flow = MaxFlow(city);
+            if (max_flow < cidade.getCityDemand() and max_flow != city_flow.find({city, cidade})->second) {
+                cout << "removing the pipeline from src: " << temp.first.first << " to dest: " << temp.first.second
+                     << " will result in a deficit of " << cidade.getCityDemand() - max_flow << "m3/s in the city "
+                     << cidade.getCityName()
+                     << "," << city << endl;
+            }
+            water_supply.addEdge(temp.first.first, temp.first.second, temp.second);
+        }
+    }
 }
 void WManager::removePipe() {
     for(auto vertex : water_supply.getVertexSet()){
-        vector<pair<pair<string,string>,double>> edges;
         for (auto edge : vertex->getAdj()){
             pair<pair<string,string>,double> temp= {{edge->getOrig()->getInfo(),edge->getDest()->getInfo()},edge->getWeight()};
             water_supply.removeEdge(edge->getOrig()->getInfo(),edge->getDest()->getInfo());
@@ -135,11 +159,8 @@ void WManager::removePipe() {
                     << " will result in a deficit of " << city.second.getCityDemand() - max_flow << "m3/s in the city "<< city.second.getCityName()
                     << ","<<city.first<<endl;
                 }
-                edges.push_back(temp);
+                water_supply.addEdge(temp.first.first,temp.first.second,temp.second);
             }
-        }
-        for(auto edge: edges){
-            water_supply.addEdge(edge.first.first,edge.first.second,edge.second);
         }
     }
 }
