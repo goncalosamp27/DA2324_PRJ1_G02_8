@@ -2,6 +2,7 @@
 // Created by joao on 18-03-2024.
 //
 
+#include <list>
 #include "../h/WManager.h"
 #include "../h/Parser.h"
 #include "../../DataStructures/Graph.h"
@@ -72,4 +73,49 @@ void WManager::RemoveReservoir() {
         water_supply.addEdge(e.first.first,e.first.second,e.second);
     }
     reservoir_map.insert(old);
+}
+void WManager::removePS()
+{
+    vector<pair<string,string>> removedPS;
+    vector <string> res;
+    for(auto vertex: water_supply.getVertexSet())
+    {
+        if(vertex->getInfo()[0] == 'P')
+        {
+            for(auto city : city_map)
+            {
+                vector<pair<pair<string,string>,double>> edges;
+                for(auto e: vertex->getAdj()){
+                    pair<pair<string,string>,double> temp= {{e->getOrig()->getInfo(),e->getDest()->getInfo()},e->getWeight()};
+                    edges.push_back(temp);
+                }
+                for(auto v : water_supply.getVertexSet()){
+                    for(auto e: v->getAdj()){
+                        if(e->getDest()->getInfo() == vertex->getInfo()){
+                            pair<pair<string,string>,double> temp= {{e->getOrig()->getInfo(),e->getDest()->getInfo()},e->getWeight()};
+                            edges.push_back(temp);
+                        }
+                    }
+                }
+
+                int expected_val = city_flow.find({city})->second;
+                string ps = vertex->getInfo();
+                water_supply.removeVertex(vertex->getInfo());
+                int new_val = MaxFlow(city.first);
+                if(expected_val != new_val) {
+                    res.push_back(ps);
+                }
+                water_supply.addVertex(ps);
+                for(auto e : edges){
+                    water_supply.addEdge(e.first.first,e.first.second,e.second);
+                }
+            }
+        }
+    }
+    for(auto station : station_map){
+        auto itr = std::find(res.begin(), res.end(),station.first);
+            if(itr == res.end()){
+                cout << "The Station " << station.first << " Will not affect the flow in any city if removed!\n";
+            }
+    }
 }

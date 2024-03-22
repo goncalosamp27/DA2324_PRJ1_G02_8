@@ -106,6 +106,7 @@ void Menu::RealibilityMenu() {
                 manager.RemoveReservoir();
                 break;
             case 2:
+                manager.removePS();
                 break;
             case 3:
                 break;
