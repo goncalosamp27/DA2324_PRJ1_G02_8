@@ -119,3 +119,27 @@ void WManager::removePS()
             }
     }
 }
+void WManager::removePipesCities() {
+    return;
+}
+void WManager::removePipe() {
+    for(auto vertex : water_supply.getVertexSet()){
+        vector<pair<pair<string,string>,double>> edges;
+        for (auto edge : vertex->getAdj()){
+            pair<pair<string,string>,double> temp= {{edge->getOrig()->getInfo(),edge->getDest()->getInfo()},edge->getWeight()};
+            water_supply.removeEdge(edge->getOrig()->getInfo(),edge->getDest()->getInfo());
+            for(auto city : city_map){
+                double max_flow = MaxFlow(city.first);
+                if(max_flow <  city.second.getCityDemand() and max_flow != city_flow.find(city)->second){
+                    cout << "removing the pipeline from src: " << temp.first.first << " to dest: "<< temp.first.second
+                    << " will result in a deficit of " << city.second.getCityDemand() - max_flow << "m3/s in the city "<< city.second.getCityName()
+                    << ","<<city.first<<endl;
+                }
+                edges.push_back(temp);
+            }
+        }
+        for(auto edge: edges){
+            water_supply.addEdge(edge.first.first,edge.first.second,edge.second);
+        }
+    }
+}

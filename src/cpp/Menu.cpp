@@ -109,6 +109,16 @@ void Menu::RealibilityMenu() {
                 manager.removePS();
                 break;
             case 3:
+                cout << "-------------------------------------" << endl;
+                cout << "|1-City                             |"<< endl;
+                cout << "|2-Pipeline                         |"<< endl;
+                cout << "|3-Back                             |"<< endl;
+                cout << "-------------------------------------" << endl;
+                cout << "Choose an option: ";
+                int option1;
+                cin >> option1;
+                if(option1 == 1)manager.removePipesCities();
+                if(option1 == 2)manager.removePipe();
                 break;
             case 4:
                 c = false;
