@@ -25,7 +25,7 @@ double WManager::MaxFlow(string city) {
     }
     for(auto& pipe : water_supply.getVertexSet()){
         for(auto& edge : pipe->getAdj()){
-            if(edge->getDest()->getInfo() == city){
+            if(edge->getDest()->getInfo() == city ){
                 max_flow += edge->getFlow();
             }
         }
@@ -46,20 +46,14 @@ void WManager::RemoveReservoir() {
     string reservoir;
     cout << "Code of the Reservoir: ";
     getline(cin>>ws,reservoir);
-    vector<pair<pair<string,string>,double>> edges;
     auto it = water_supply.findVertex(reservoir);
     if(it == NULL){
         cout << "Invalid Input"<<'\n';
         return;
     }
-    for(auto e: it->getAdj()){
-        pair<pair<string,string>,double> temp= {{e->getOrig()->getInfo(),e->getDest()->getInfo()},e->getWeight()};
-        edges.push_back(temp);
-    }
     auto itr = reservoir_map.find(reservoir);
     pair<string ,Reservoir> old = *itr;
     reservoir_map.erase(itr);
-    water_supply.removeVertex(reservoir);
     double max_flow;
     for(auto city : city_map){
         max_flow = MaxFlow(city.first);
@@ -67,10 +61,6 @@ void WManager::RemoveReservoir() {
         if(itr->second != max_flow){
             cout << itr->first.second.getCityName() << " : "<< max_flow << " m3/s" << endl;
         }
-    }
-    water_supply.addVertex(reservoir);
-    for(auto e : edges){
-        water_supply.addEdge(e.first.first,e.first.second,e.second);
     }
     reservoir_map.insert(old);
 }
@@ -117,5 +107,50 @@ void WManager::removePS()
             if(itr == res.end()){
                 cout << "The Station " << station.first << " Will not affect the flow in any city if removed!\n";
             }
+    }
+}
+void WManager::TotalMaxFlow() {
+    int sum = 0;
+    for(auto city : city_flow){
+        sum += city.second;
+    }
+    cout<< "The total max flow is: " << sum << " m3/s!"<< endl;
+}
+void WManager::removePipesCities() {
+    string city;
+    cout << "Code of the City: ";
+    getline(cin >> ws, city);
+    for (auto vertex: water_supply.getVertexSet()) {
+        City cidade = city_map.find(city)->second;
+        for (auto edge: vertex->getAdj()) {
+            pair<pair<string, string>, double> temp = {{edge->getOrig()->getInfo(), edge->getDest()->getInfo()},
+                                                       edge->getWeight()};
+            water_supply.removeEdge(edge->getOrig()->getInfo(), edge->getDest()->getInfo());
+            double max_flow = MaxFlow(city);
+            if (max_flow < cidade.getCityDemand() and max_flow != city_flow.find({city, cidade})->second) {
+                cout << "removing the pipeline from src: " << temp.first.first << " to dest: " << temp.first.second
+                     << " will result in a deficit of " << cidade.getCityDemand() - max_flow << "m3/s in the city "
+                     << cidade.getCityName()
+                     << "," << city << endl;
+            }
+            water_supply.addEdge(temp.first.first, temp.first.second, temp.second);
+        }
+    }
+}
+void WManager::removePipe() {
+    for(auto vertex : water_supply.getVertexSet()){
+        for (auto edge : vertex->getAdj()){
+            pair<pair<string,string>,double> temp= {{edge->getOrig()->getInfo(),edge->getDest()->getInfo()},edge->getWeight()};
+            water_supply.removeEdge(edge->getOrig()->getInfo(),edge->getDest()->getInfo());
+            for(auto city : city_map){
+                double max_flow = MaxFlow(city.first);
+                if(max_flow <  city.second.getCityDemand() and max_flow != city_flow.find(city)->second){
+                    cout << "removing the pipeline from src: " << temp.first.first << " to dest: "<< temp.first.second
+                    << " will result in a deficit of " << city.second.getCityDemand() - max_flow << "m3/s in the city "<< city.second.getCityName()
+                    << ","<<city.first<<endl;
+                }
+                water_supply.addEdge(temp.first.first,temp.first.second,temp.second);
+            }
+        }
     }
 }

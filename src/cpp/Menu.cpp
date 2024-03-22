@@ -47,7 +47,8 @@ void Menu::MetricsMenu(){
         cout << "|1. Max Flow for one city           |"<< endl;
         cout << "|2. Max Flow for all cities         |" << endl;
         cout << "|3. Cities with not enough max flow |" << endl;
-        cout << "|4. Exit                            |" << endl;
+        cout << "|4. Total Max Flow                  |" << endl;
+        cout << "|5. Exit                            |" << endl;
         cout << "-------------------------------------" << endl;
         cout << "Choose an option: ";
         int option;
@@ -58,7 +59,7 @@ void Menu::MetricsMenu(){
         switch (option) {
             case 1:
                 cout << "Please enter the city name" << endl;
-                cin >> name;
+                getline(cin>>ws,name);
                 for(auto city : city_flow){
                     if(name  == city.first.second.getCityName()){
                         cout << city.first.second.getCityName() << " : " <<  city.second << " m3/s" << endl;
@@ -80,6 +81,9 @@ void Menu::MetricsMenu(){
                 }
                 break;
             case 4:
+                manager.TotalMaxFlow();
+                break;
+            case 5:
                 c = false;
                 cout << "Goodbye!" << endl;
                 break;
@@ -109,6 +113,16 @@ void Menu::RealibilityMenu() {
                 manager.removePS();
                 break;
             case 3:
+                cout << "-------------------------------------" << endl;
+                cout << "|1-City                             |"<< endl;
+                cout << "|2-Pipeline                         |"<< endl;
+                cout << "|3-Back                             |"<< endl;
+                cout << "-------------------------------------" << endl;
+                cout << "Choose an option: ";
+                int option1;
+                cin >> option1;
+                if(option1 == 1)manager.removePipesCities();
+                if(option1 == 2)manager.removePipe();
                 break;
             case 4:
                 c = false;

@@ -19,6 +19,9 @@ public:
     void set_all_flow();
     void RemoveReservoir();
     void removePS();
+    void removePipe();
+    void TotalMaxFlow();
+    void removePipesCities();
     struct HashCityFlow {
         int operator()(const pair<string ,City>& city) const {
             int v = 0;
