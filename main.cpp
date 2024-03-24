@@ -4,8 +4,12 @@
 #include "DataStructures/Graph.h"
 int main() {
     WManager Manager;
-    Parser parser;
-    Menu menu = Menu(Manager, parser);
-    menu.startMenu();
+    Graph<string> water_supply;
+    for(auto& v : Manager.getWaterSupply().getVertexSet()){
+        for(auto& e : v->getAdj()){
+            Manager.calculate(e);
+        }
+
+    }
     return 0;
 }

@@ -18,6 +18,8 @@ public:
     double MaxFlow(string city);
     void set_all_flow();
     void RemoveReservoir();
+    Graph<string> getWaterSupply();
+    pair<pair<int, int>, int> calculate(Edge<string> *edge);
     struct HashCityFlow {
         int operator()(const pair<string ,City>& city) const {
             int v = 0;
@@ -33,6 +35,7 @@ public:
         }
     };
     unordered_map<pair<string ,City>,double,HashCityFlow> getCityFlow();
+
 
 private:
     unordered_map<string,City,City::HashCity> city_map;

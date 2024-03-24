@@ -2,6 +2,8 @@
 // Created by joao on 18-03-2024.
 //
 
+#include <cfloat>
+#include <valarray>
 #include "../h/WManager.h"
 #include "../h/Parser.h"
 #include "../../DataStructures/Graph.h"
@@ -13,6 +15,46 @@ WManager::WManager() {
     parser.parse_Pipes();
     water_supply = parser.getWater_Suply();
     set_all_flow();
+}
+Graph<string> WManager::getWaterSupply(){
+    return this->water_supply;
+}
+pair<pair<int, int>,int> WManager::calculate(Edge<string> *edge) {
+    float sum = 0.0;
+    float count = 0;
+    float diff;
+    float variance = 0;
+    float avg;
+    float min = FLT_MAX;
+    float max = FLT_MIN;
+    City cit;
+    for (auto& city : city_map){
+        cit = city.second;
+        initializeFlow(&water_supply);
+        MaxFlow(cit.getCityCode());
+        diff = edge->getWeight() - edge->getFlow();
+        if (diff > max){
+            max = diff;
+        }
+        if (diff < min){
+            min = diff;
+        }
+        sum+= diff;
+        count++;
+    }
+    avg = sum/count;
+    for (auto& city : city_map){
+        cit = city.second;
+        initializeFlow(&water_supply);
+        MaxFlow(cit.getCityCode());
+        diff = edge->getWeight() - edge->getFlow();
+        variance += (diff - avg) * (diff - avg);
+    }
+    variance/=count;
+    variance = sqrt(variance);
+    pair <pair<float, float>, float> p = pair(pair(max-min,avg),variance);
+    cout <<"Pipe: "<< edge->getOrig()->getInfo() << " -> " << edge->getDest()->getInfo() << " capacity: "<< edge->getWeight() << " maxdiff: " << p.first.first << " average: " << p.first.second << " variance: "<< p.second << endl;
+    return p;
 }
 double WManager::MaxFlow(string city) {
     double max_flow = 0;

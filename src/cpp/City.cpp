@@ -2,6 +2,7 @@
 
 using namespace std;
 
+City::City(){}
 City::City(string name, int id, string code, double demand, int population) {
     this->city_name = name;
     this->city_id = id;
