@@ -11,6 +11,7 @@
 #include <algorithm>
 #include "../DataStructures/MutablePriorityQueue.h"
 #include "../src/h/Reservoir.h"
+#include "../src/h/City.h"
 
 template <class T>
 class Edge;
@@ -725,15 +726,16 @@ double findMinResidualAlongPath(Vertex<T> *s, Vertex<T> *t, Graph<T> *g) {
     return f;
 }
 // Function to augment flow along the augmenting path with the given flow value
-template <class T>
-void augmentFlowAlongPath(Vertex<T> *s, Vertex<T> *t, double f, Graph<T> *g) {
+template <typename T, typename T1>
+void augmentFlowAlongPath(Vertex<T> *s, T1 city, double f, Graph<T> *g) {
 // Traverse the augmenting path and update the flow values accordingly
+    Vertex<string>* t = g->findVertex(city.getCityCode());
     for (auto v = t; v != s; ) {
         auto e = v->getPath();
         double flow = e->getFlow();
         if (e->getDest() == v) {
-            e->setFlow(flow + f);
-            v = e->getOrig();
+                e->setFlow(flow + f);
+                v = e->getOrig();
         }
         else {
             e->setFlow(flow - f);
@@ -749,25 +751,37 @@ void initializeFlow(Graph<T> *g) {
         }
     }
 }
+
 // Main function implementing the Edmonds-Karp algorithm
-template <class T,class T2>
-void edmondsKarp(Graph<T> *g, const T2 & source, const T & target) {
+template <typename T, typename T1, typename T2>
+double edmondsKarp(Graph<T> *g, const T1 & source, const T2 & target) {
 // Find source and target vertices in the graph
     double max_flow = source.getMaxDelivery();
+    double capacity = target.getCityDemand();
+    double flow = 0;
     Vertex<T>* s = g->findVertex(source.getCode());
-    Vertex<T>* t = g->findVertex(target);
+    Vertex<T>* t = g->findVertex(target.getCityCode());
 // Validate source and target vertices
     if (s == nullptr || t == nullptr || s == t)
         throw std::logic_error("Invalid source and/or target vertex");
 
-    while(findAugmentingPath(g, s, t) and max_flow > 0) {
+    while(findAugmentingPath(g, s, t) and max_flow > 0 and capacity > 0) {
         double f = findMinResidualAlongPath(s, t, g);
+        if (capacity <= f) {
+            augmentFlowAlongPath(s, target,capacity , g);
+            flow += capacity;
+            return flow;
+        }
+        else {capacity-=f;}
         if (f > max_flow) {
-            augmentFlowAlongPath(s, t, max_flow, g);
-            break;
+            augmentFlowAlongPath(s, target, max_flow, g);
+            flow += max_flow;
+            return flow;
         }
         max_flow -= f;
-        augmentFlowAlongPath(s, t, f, g);
+        augmentFlowAlongPath(s, target, f, g);
+        flow += f;
     }
+    return flow;
 }
 #endif /* DA_TP_CLASSES_GRAPH */

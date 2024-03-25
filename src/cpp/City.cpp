@@ -10,6 +10,8 @@ City::City(string name, int id, string code, double demand, int population) {
     this->city_population = population;
 }
 
+
+City::City(){}
 string City::getCityName() const {return city_name;}
 void City::setCityName(string name) {this->city_name = name;}
 

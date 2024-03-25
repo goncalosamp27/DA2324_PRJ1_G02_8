@@ -5,8 +5,7 @@
 #ifndef DA2324_PRJ1_G02_8_WMANAGER_H
 #define DA2324_PRJ1_G02_8_WMANAGER_H
 #include <unordered_map>
-#include "../../DataStructures/Graph.h"
-#include "string"
+#include <list>
 #include "City.h"
 #include "Reservoir.h"
 #include "Stations.h"

@@ -2,10 +2,7 @@
 // Created by joao on 18-03-2024.
 //
 
-#include <list>
 #include "../h/WManager.h"
-#include "../h/Parser.h"
-#include "../../DataStructures/Graph.h"
 WManager::WManager() {
     parser.parse_Cities();
     parser.parse_Reservoirs();
@@ -18,18 +15,21 @@ WManager::WManager() {
     set_all_flow();
 }
 double WManager::MaxFlow(string city) {
+    City city2;
     double max_flow = 0;
+    double flow;
     initializeFlow(&water_supply);
-    for (auto& reservoir : reservoir_map){
-        edmondsKarp(&water_supply,reservoir.second,city);
-    }
-    for(auto& pipe : water_supply.getVertexSet()){
-        for(auto& edge : pipe->getAdj()){
-            if(edge->getDest()->getInfo() == city ){
-                max_flow += edge->getFlow();
-            }
+    for (auto cit : city_map){
+        if(cit.first == city){
+            city2 = cit.second;
         }
     }
+    for (auto& reservoir : reservoir_map){
+        flow = edmondsKarp(&water_supply,reservoir.second,city2);
+        city2.setCityDemand(city2.getCityDemand() - flow);
+        max_flow += flow;
+    }
+    city2.setCityDemand(city2.getCityDemand() + max_flow);
     return max_flow;
 }
 unordered_map<pair<string ,City>,double,WManager::HashCityFlow> WManager::getCityFlow() {
