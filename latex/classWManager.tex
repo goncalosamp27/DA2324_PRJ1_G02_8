@@ -1,0 +1,90 @@
+\hypertarget{classWManager}{}\doxysection{WManager Class Reference}
+\label{classWManager}\index{WManager@{WManager}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structWManager_1_1HashCityFlow}{Hash\+City\+Flow}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classWManager_a2e947947221a343bcd29ecac592341af}{Max\+Flow}} (string city)
+\begin{DoxyCompactList}\small\item\em This function calculates the Max\+Flow using the Edmonds Karp Algorithm. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWManager_accfc0febe035cf83e68c4bee05bd0b25}{set\+\_\+all\+\_\+flow}} ()
+\begin{DoxyCompactList}\small\item\em Calculates and sets the maximum flow values for all cities. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWManager_abdcb8644bcc20ca8d5fbaaad956823fa}{Remove\+Reservoir}} ()
+\begin{DoxyCompactList}\small\item\em Removes a reservoir from the water supply network. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWManager_a1a16d7d96a6bfef39d17421237d64d73}{remove\+PS}} ()
+\begin{DoxyCompactList}\small\item\em Removes pumping stations that do not affect the flow in any city. \end{DoxyCompactList}\item 
+unordered\+\_\+map$<$ pair$<$ string,\mbox{\hyperlink{classCity}{City}} $>$, double, \mbox{\hyperlink{structWManager_1_1HashCityFlow}{Hash\+City\+Flow}} $>$ \mbox{\hyperlink{classWManager_ada1b5abb7517217a7eee3061386a8fc1}{get\+City\+Flow}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the flow values associated with pairs of cities. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classWManager_ada1b5abb7517217a7eee3061386a8fc1}\label{classWManager_ada1b5abb7517217a7eee3061386a8fc1}} 
+\index{WManager@{WManager}!getCityFlow@{getCityFlow}}
+\index{getCityFlow@{getCityFlow}!WManager@{WManager}}
+\doxysubsubsection{\texorpdfstring{getCityFlow()}{getCityFlow()}}
+{\footnotesize\ttfamily unordered\+\_\+map$<$ pair$<$ string,\mbox{\hyperlink{classCity}{City}} $>$, double, \mbox{\hyperlink{structWManager_1_1HashCityFlow}{WManager\+::\+Hash\+City\+Flow}} $>$ WManager\+::get\+City\+Flow (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves the flow values associated with pairs of cities. 
+
+\begin{DoxyReturn}{Returns}
+An unordered map containing pairs of cities and their corresponding flow values. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWManager_a2e947947221a343bcd29ecac592341af}\label{classWManager_a2e947947221a343bcd29ecac592341af}} 
+\index{WManager@{WManager}!MaxFlow@{MaxFlow}}
+\index{MaxFlow@{MaxFlow}!WManager@{WManager}}
+\doxysubsubsection{\texorpdfstring{MaxFlow()}{MaxFlow()}}
+{\footnotesize\ttfamily double WManager\+::\+Max\+Flow (\begin{DoxyParamCaption}\item[{string}]{city }\end{DoxyParamCaption})}
+
+
+
+This function calculates the Max\+Flow using the Edmonds Karp Algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em city} & String that represents the code of the city example\+: \char`\"{}\+C\+\_\+01\char`\"{}; \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of the maxflow; 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWManager_a1a16d7d96a6bfef39d17421237d64d73}\label{classWManager_a1a16d7d96a6bfef39d17421237d64d73}} 
+\index{WManager@{WManager}!removePS@{removePS}}
+\index{removePS@{removePS}!WManager@{WManager}}
+\doxysubsubsection{\texorpdfstring{removePS()}{removePS()}}
+{\footnotesize\ttfamily void WManager\+::remove\+PS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Removes pumping stations that do not affect the flow in any city. 
+
+This function iterates through all pumping stations in the water supply network. For each pumping station, it checks if removing it affects the flow in any city. If removing the pumping station does not affect the flow in any city, it adds the pumping station to the list of removed pumping stations. Finally, it displays a message for each pumping station indicating whether it affects the flow in any city. \mbox{\Hypertarget{classWManager_abdcb8644bcc20ca8d5fbaaad956823fa}\label{classWManager_abdcb8644bcc20ca8d5fbaaad956823fa}} 
+\index{WManager@{WManager}!RemoveReservoir@{RemoveReservoir}}
+\index{RemoveReservoir@{RemoveReservoir}!WManager@{WManager}}
+\doxysubsubsection{\texorpdfstring{RemoveReservoir()}{RemoveReservoir()}}
+{\footnotesize\ttfamily void WManager\+::\+Remove\+Reservoir (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Removes a reservoir from the water supply network. 
+
+This function prompts the user to enter the code of the reservoir to be removed. It then removes the reservoir from the water supply network along with its associated edges. After removal, it recalculates the maximum flow to each city and updates the city\+\_\+flow map accordingly. \mbox{\Hypertarget{classWManager_accfc0febe035cf83e68c4bee05bd0b25}\label{classWManager_accfc0febe035cf83e68c4bee05bd0b25}} 
+\index{WManager@{WManager}!set\_all\_flow@{set\_all\_flow}}
+\index{set\_all\_flow@{set\_all\_flow}!WManager@{WManager}}
+\doxysubsubsection{\texorpdfstring{set\_all\_flow()}{set\_all\_flow()}}
+{\footnotesize\ttfamily void WManager\+::set\+\_\+all\+\_\+flow (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calculates and sets the maximum flow values for all cities. 
+
+This function iterates through all cities in the city map, calculates the maximum flow to each city using the \mbox{\hyperlink{classWManager_a2e947947221a343bcd29ecac592341af}{Max\+Flow()}} function, and then sets the calculated flow values in the city\+\_\+flow map. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/h/WManager.\+h\item 
+src/cpp/WManager.\+cpp\end{DoxyCompactItemize}
