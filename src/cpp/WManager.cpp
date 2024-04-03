@@ -17,6 +17,14 @@ WManager::WManager() {
     water_supply = parser.getWater_Suply();
     set_all_flow();
 }
+
+/**
+ * @brief This function calculates the MaxFlow using the Edmonds Karp Algorithm.
+ *
+ * @param city String that represents the code of the city example: "C_01";
+ * @return The value of the maxflow;
+ */
+
 double WManager::MaxFlow(string city) {
     double max_flow = 0;
     initializeFlow(&water_supply);
@@ -32,9 +40,23 @@ double WManager::MaxFlow(string city) {
     }
     return max_flow;
 }
+
+/**
+ * @brief Retrieves the flow values associated with pairs of cities.
+ *
+ * @return An unordered map containing pairs of cities and their corresponding flow values.
+ */
 unordered_map<pair<string ,City>,double,WManager::HashCityFlow> WManager::getCityFlow() {
     return city_flow;
 }
+
+/**
+ * @brief Calculates and sets the maximum flow values for all cities.
+ *
+ * This function iterates through all cities in the city map, calculates the maximum flow
+ * to each city using the MaxFlow() function, and then sets the calculated flow values
+ * in the city_flow map.
+ */
 void WManager::set_all_flow() {
     double max_flow;
     for(auto city : city_map){
@@ -42,6 +64,14 @@ void WManager::set_all_flow() {
         city_flow.insert({city,max_flow});
     }
 }
+
+/**
+ * @brief Removes a reservoir from the water supply network.
+ *
+ * This function prompts the user to enter the code of the reservoir to be removed.
+ * It then removes the reservoir from the water supply network along with its associated edges.
+ * After removal, it recalculates the maximum flow to each city and updates the city_flow map accordingly.
+ */
 void WManager::RemoveReservoir() {
     string reservoir;
     cout << "Code of the Reservoir: ";
@@ -74,6 +104,15 @@ void WManager::RemoveReservoir() {
     }
     reservoir_map.insert(old);
 }
+
+/**
+ * @brief Removes pumping stations that do not affect the flow in any city.
+ *
+ * This function iterates through all pumping stations in the water supply network.
+ * For each pumping station, it checks if removing it affects the flow in any city.
+ * If removing the pumping station does not affect the flow in any city, it adds the pumping station to the list of removed pumping stations.
+ * Finally, it displays a message for each pumping station indicating whether it affects the flow in any city.
+ */
 void WManager::removePS()
 {
     vector<pair<string,string>> removedPS;
@@ -114,8 +153,8 @@ void WManager::removePS()
     }
     for(auto station : station_map){
         auto itr = std::find(res.begin(), res.end(),station.first);
-            if(itr == res.end()){
-                cout << "The Station " << station.first << " Will not affect the flow in any city if removed!\n";
-            }
+        if(itr == res.end()){
+            cout << "The Station " << station.first << " Will not affect the flow in any city if removed!\n";
+        }
     }
 }

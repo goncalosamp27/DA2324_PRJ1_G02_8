@@ -4,11 +4,24 @@
 #include "../h/Menu.h"
 #include <iostream>
 
+/**
+ * @brief Constructor for the Menu class.
+ * Initializes the Menu with a water manager and a parser.
+ *
+ * @param manager The water manager object.
+ * @param parser The parser object.
+ */
 Menu::Menu(WManager manager, Parser parser) {
     this->manager = manager;
     this->parser = parser;
 }
 
+/**
+ * @brief Starts the main menu of the water management system.
+ *
+ * The menu allows the user to select different options such as basic service metrics,
+ * reliability and sensitivity to failures, or exit the program.
+ */
 void Menu::startMenu() {
     int c = true;
     while (c) {
@@ -39,6 +52,10 @@ void Menu::startMenu() {
         }
     }
 }
+
+/**
+ * @brief Displays the metrics menu, allowing the user to choose various options related to service metrics.
+ */
 void Menu::MetricsMenu(){
     int c = true;
     while(c){
@@ -88,6 +105,10 @@ void Menu::MetricsMenu(){
         }
     }
 }
+
+/**
+ * @brief Displays the reliability menu, allowing the user to choose options related to system reliability.
+ */
 void Menu::RealibilityMenu() {
     int c = true;
     while(c){

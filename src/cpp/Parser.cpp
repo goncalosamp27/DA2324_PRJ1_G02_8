@@ -6,6 +6,10 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+
+/**
+ * @brief Parses the reservoir data from a CSV file and populates the reservoir map.
+ */
 void Parser::parse_Reservoirs() {
     ifstream in;
     in.open("../Project1LargeDataSet/Reservoir.csv");
@@ -30,8 +34,15 @@ void Parser::parse_Reservoirs() {
         water_suply.addVertex(code);
     }
 }
+/**
+ * @brief Default constructor for the Parser class.
+ */
 Parser::Parser() {
 }
+
+/**
+ * @brief Parses the station data from a CSV file and populates the stations map.
+ */
 void Parser::parse_Stations(){
     ifstream in;
     in.open("../Project1LargeDataSet/Stations.csv");
@@ -52,6 +63,9 @@ void Parser::parse_Stations(){
      water_suply.addVertex(Code);
     }
 }
+/**
+ * @brief Parses the city data from a CSV file and populates the cities map.
+ */
 void Parser::parse_Cities(){
     ifstream in;
     in.open("../Project1LargeDataSet/Cities.csv");
@@ -78,6 +92,9 @@ void Parser::parse_Cities(){
         water_suply.addVertex(Code);
     }
 }
+/**
+ * @brief Parses the pipe data from a CSV file and populates the water supply graph with edges.
+ */
 void Parser::parse_Pipes(){
     ifstream in;
     in.open("../Project1LargeDataSet/Pipes.csv");
@@ -107,16 +124,38 @@ void Parser::parse_Pipes(){
 
     }
 }
-
+/**
+ * @brief Getter function for retrieving the water supply graph.
+ *
+ * @return The water supply graph.
+ */
 Graph<string> Parser::getWater_Suply() {
     return water_suply;
 }
+
+/**
+ * @brief Getter function for retrieving the reservoir map.
+ *
+ * @return The reservoir map.
+ */
 unordered_map<string,Reservoir, Reservoir::ReservoirHash> Parser::getReservoirMap(){
     return reservoir_map;
 }
+
+/**
+ * @brief Getter function for retrieving the city map.
+ *
+ * @return The city map.
+ */
 unordered_map<string,City,City::HashCity> Parser::getCityMap() {
     return cities_map;
 }
+
+/**
+ * @brief Getter function for retrieving the station map.
+ *
+ * @return The station map.
+ */
 unordered_map<string ,Station,Station::StationHash> Parser::getStationMap() {
     return stations_map;
 }
