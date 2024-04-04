@@ -173,9 +173,12 @@ void Parser::parse_Stations_Small() {
         ss.ignore(1);
         getline(ss, Code, ',');
         ss.ignore(1);
-        Station station(id,Code);
-        stations_map.insert({Code,station});
-        water_suply.addVertex(Code);
+        if(Code[0] == 'P'){
+            Station station(id,Code);
+            stations_map.insert({Code,station});
+            water_suply.addVertex(Code);
+        }
+
     }
 }
 void Parser::parse_Pipes_Small() {

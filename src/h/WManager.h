@@ -19,6 +19,7 @@ public:
     void super_source_sink();
     void set_all_flow();
     void RemoveReservoir();
+    void removess();
     void removePSinput();
     void removePS();
     void removePipe();
@@ -48,6 +49,7 @@ private:
     Graph<string> water_supply;
     Parser parser;
 
+    void geral();
 };
 
 
