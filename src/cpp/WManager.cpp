@@ -115,6 +115,7 @@ void WManager::removePSinput() {
             water_supply.addEdge(e.first.first, e.first.second, e.second);
         }
     }
+
 }
 void WManager::removePS(){
     vector<pair<string,string>> removedPS;
@@ -194,6 +195,7 @@ void WManager::removePipesCities() {
     }
 }
 void WManager::removePipe() {
+
     for(auto vertex : water_supply.getVertexSet()){
         for (auto edge : vertex->getAdj()){
             pair<pair<string,string>,double> temp= {{edge->getOrig()->getInfo(),edge->getDest()->getInfo()},edge->getWeight()};
@@ -205,8 +207,8 @@ void WManager::removePipe() {
                     << " will result in a deficit of " << city.second.getCityDemand() - max_flow << "m3/s in the city "<< city.second.getCityName()
                     << ","<<city.first<<endl;
                 }
-                water_supply.addEdge(temp.first.first,temp.first.second,temp.second);
             }
+            water_supply.addEdge(temp.first.first,temp.first.second,temp.second);
         }
     }
 }
