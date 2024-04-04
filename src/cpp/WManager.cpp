@@ -49,14 +49,11 @@ WManager::WManager(string parse) {
  * @return The maximum flow for the given city.
  */
 double WManager::MaxFlow(string city) {
-    City city2;
-    double max_flow = 0;
-    double flow;
-    initializeFlow(&water_supply);
-    for (auto cit : city_map){
-        if(cit.first == city){
-            city2 = cit.second;
-
+    Vertex<string>*  city2 = water_supply.findVertex(city);
+    for(auto e : city2->getAdj()){
+        return e->getFlow();
+    }
+}
 void WManager::geral(){
     for (auto city : city_map){
         Vertex<string>* city2 = water_supply.findVertex(city.first);
@@ -69,14 +66,8 @@ void WManager::geral(){
     initializeFlow(&water_supply);
     edmondsKarp(&water_supply,"super_source","super_sink");
     removess();
+}
 
-}
-double WManager::MaxFlow(string city) {
-    Vertex<string>*  city2 = water_supply.findVertex(city);
-    for(auto e : city2->getAdj()){
-            return e->getFlow();
-    }
-}
 
 void WManager::super_source_sink() {
     water_supply.addVertex("super_source");
@@ -155,6 +146,7 @@ void WManager::RemoveReservoir() {
             cout << itr->first.second.getCityName() << " : "<< max_flow << " m3/s" << endl;
         }
     }
+    reservoir_map.insert(old);
     geral();
 }
 
