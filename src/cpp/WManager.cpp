@@ -1,11 +1,15 @@
-//
-// Created by joao on 18-03-2024.
-//
-
 #include "../h/WManager.h"
+/**
+ * @brief Default constructor for WManager class.
+ */
 WManager::WManager(){
     return;
 };
+
+/**
+ * @brief Parameterized constructor. Applies the parsing to either the large or the small data set according to the input.
+ * @param parse The parse string.
+ */
 WManager::WManager(string parse) {
     if(parse == "large"){
         parser.parse_Cities_Large();
@@ -25,6 +29,20 @@ WManager::WManager(string parse) {
     water_supply = parser.getWater_Suply();
     set_all_flow();
 }
+
+/**
+ * @brief Computes the maximum flow for a given city.
+ *
+ * @details
+ * - Initializes local variables for computing the maximum flow.
+ * - Iterates over the city map to find the city object corresponding to the input city name.
+ * - Computes the flow from each reservoir to the given city using the Edmonds-Karp algorithm.
+ * - Updates the city demand and accumulates the flow for each reservoir.
+ * - Returns the maximum flow for the given city.
+ *
+ * @param city The city for which to compute the maximum flow.
+ * @return The maximum flow for the given city.
+ */
 double WManager::MaxFlow(string city) {
     City city2;
     double max_flow = 0;
@@ -43,9 +61,18 @@ double WManager::MaxFlow(string city) {
     city2.setCityDemand(city2.getCityDemand() + max_flow);
     return max_flow;
 }
+
+/**
+ * @brief Getter for city flow.
+ * @return The city flow map.
+ */
 unordered_map<pair<string ,City>,double,WManager::HashCityFlow> WManager::getCityFlow() {
     return city_flow;
 }
+
+/**
+ * @brief Sets flow for all nodes in the water supply graph.
+ */
 void WManager::set_all_flow() {
     double max_flow;
     for(auto city : city_map){
@@ -53,6 +80,24 @@ void WManager::set_all_flow() {
         city_flow.insert({city,max_flow});
     }
 }
+
+/**
+ * @brief Removes a reservoir.
+ *
+ * @details
+ * - Prompts the user to input the code of the reservoir.
+ * - Checks if the reservoir exists in the water supply graph.
+ * - If the reservoir doesn't exist, displays an error message and returns.
+ * - Finds the reservoir in the reservoir map.
+ * - If the reservoir is not found, displays an error and returns.
+ * - Backs up the reservoir data before removal.
+ * - Removes the reservoir from the reservoir map.
+ * - Iterates over all cities in the city map.
+ *   - Computes the maximum flow for each city after reservoir removal.
+ *   - Finds the city-flow pair corresponding to the current city in the city flow map.
+ *   - If the maximum flow has changed, displays the city and its updated maximum flow.
+ * - Re-inserts the removed reservoir back into the reservoir map.
+ */
 void WManager::RemoveReservoir() {
     string reservoir;
     cout << "Code of the Reservoir: ";
@@ -75,6 +120,26 @@ void WManager::RemoveReservoir() {
     }
     reservoir_map.insert(old);
 }
+
+/**
+ * @brief Removes a pumping station from the water supply graph.
+ *
+ * @details
+ * - Prompts the user to input the code of the pumping station.
+ * - Checks if the pumping station exists in the station map.
+ * - If the pumping station doesn't exist, displays an error message and returns.
+ * - Finds the vertex corresponding to the pumping station in the water supply graph.
+ * - Iterates over all cities in the city map:
+ *   - Collects edges connected to the pumping station and adjacent vertices.
+ *   - Computes the expected flow value for the current city before removal of the pumping station.
+ *   - Removes the pumping station from the water supply graph and recomputes the maximum flow for the city.
+ *   - If the expected flow value differs from the new flow value:
+ *     - Displays a warning message indicating the impact on the city's flow value.
+ *     - Displays the old and new flow values for comparison.
+ *   - Re-adds the pumping station to the water supply graph and restores its edges.
+ *
+ * @sa MaxFlow(string city)
+ */
 void WManager::removePSinput() {
     string PS;
     cout << "Code of the Pumping Station: ";
@@ -116,6 +181,22 @@ void WManager::removePSinput() {
         }
     }
 }
+
+/**
+ * @brief Removes all pumping stations that do not affect the flow in any city.
+ *
+ * @details
+ * - Iterates over all vertices in the water supply graph.
+ * - For each vertex representing a pumping station:
+ *   - Iterates over all cities in the city map:
+ *     - Collects edges connected to the pumping station and adjacent vertices.
+ *     - Computes the expected flow value for the current city before removal of the pumping station.
+ *     - Removes the pumping station from the water supply graph and recomputes the maximum flow for the city.
+ *     - If the expected flow value differs from the new flow value, adds the pumping station to the list of removed pumping stations.
+ *     - Re-adds the pumping station to the water supply graph and restores its edges.
+ * - Iterates over all pumping stations in the station map:
+ *   - If a pumping station is not in the list of removed pumping stations, displays a message indicating that it will not affect the flow in any city if removed.
+ */
 void WManager::removePS(){
     vector<pair<string,string>> removedPS;
     vector <string> res;
@@ -160,6 +241,15 @@ void WManager::removePS(){
             }
     }
 }
+
+/**
+ * @brief Computes the total maximum flow for all cities.
+ *
+ * @details
+ * - Iterates over all cities in the city flow map.
+ * - Accumulates the maximum flow values for all cities.
+ * - Displays the total maximum flow.
+ */
 void WManager::TotalMaxFlow() {
     int sum = 0;
     for(auto city : city_flow){
@@ -167,6 +257,24 @@ void WManager::TotalMaxFlow() {
     }
     cout<< "The total max flow is: " << sum << " m3/s!"<< endl;
 }
+
+/**
+ * @brief Removes pipelines connected to a specified city and checks for flow deficits.
+ *
+ * @details
+ * - Prompts the user to input the code of the city.
+ * - Checks if the city exists in the city map.
+ * - If the city doesn't exist, displays an error message and returns.
+ * - Iterates over all vertices in the water supply graph:
+ *   - Retrieves the city object corresponding to the specified city code.
+ *   - Iterates over all edges adjacent to the current vertex:
+ *     - Removes the edge temporarily and recomputes the maximum flow for the specified city.
+ *     - If the maximum flow is less than the city demand and differs from the existing flow in the city:
+ *       - Displays a message indicating the deficit in flow if the pipeline is removed.
+ *     - Restores the removed edge.
+ *
+ * @sa MaxFlow(string city)
+ */
 void WManager::removePipesCities() {
     string city;
     cout << "Code of the City: ";
@@ -193,6 +301,20 @@ void WManager::removePipesCities() {
         }
     }
 }
+
+/**
+ * @brief Removes each pipeline in the water supply graph and checks for flow deficits in all cities.
+ *
+ * @details
+ * - Iterates over all vertices in the water supply graph.
+ * - Iterates over all edges adjacent to each vertex.
+ * - Removes the current pipeline temporarily.
+ * - For each city in the city map:
+ *   - Computes the maximum flow after removing the pipeline.
+ *   - If the maximum flow is less than the city demand and differs from the existing flow in the city:
+ *     - Displays a message indicating the deficit in flow if the pipeline is removed.
+ * - Restores the removed pipeline.
+ */
 void WManager::removePipe() {
     for(auto vertex : water_supply.getVertexSet()){
         for (auto edge : vertex->getAdj()){

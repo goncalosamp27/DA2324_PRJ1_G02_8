@@ -1,7 +1,3 @@
-//
-// Created by joao on 18-03-2024.
-//
-
 #ifndef DA2324_PRJ1_G02_8_WMANAGER_H
 #define DA2324_PRJ1_G02_8_WMANAGER_H
 #include <unordered_map>
@@ -11,6 +7,11 @@
 #include "Stations.h"
 #include "Parser.h"
 using namespace std;
+
+/**
+ * @file WManager.h
+ * @brief Declaration of the WManager class.
+ */
 class WManager {
 public:
     WManager();

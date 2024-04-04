@@ -1,7 +1,3 @@
-//
-// Created by joao on 18-03-2024.
-//
-
 #ifndef DA2324_PRJ1_G02_8_PARSER_H
 #define DA2324_PRJ1_G02_8_PARSER_H
 #include <unordered_map>
@@ -12,7 +8,10 @@
 #include "Stations.h"
 using namespace std;
 
-
+/**
+ * @file Parser.h
+ * @brief Declaration of the Parser class.
+ */
 class Parser {
 public:
     Parser();
