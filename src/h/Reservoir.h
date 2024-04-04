@@ -1,11 +1,11 @@
-//
-// Created by joao on 18-03-2024.
-//
-
 #ifndef DA2324_PRJ1_G02_8_RESERVOIR_H
 #define DA2324_PRJ1_G02_8_RESERVOIR_H
 #include <string>
 using namespace std;
+
+/**
+ * @brief A class representing a reservoir.
+ */
 class Reservoir {
 public:
     Reservoir();

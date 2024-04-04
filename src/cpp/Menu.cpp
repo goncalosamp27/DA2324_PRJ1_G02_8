@@ -1,12 +1,22 @@
-//
-// Created by ubuntiago on 19-03-2024.
-//
 #include "../h/Menu.h"
 #include <iostream>
 
+/**
+ * @brief Constructor for the Menu class.
+ * Initializes the Menu with a parser.
+ *
+ * @param parser The parser object.
+ */
 Menu::Menu(Parser parser) {
     this->parser = parser;
 }
+
+/**
+ * @brief Parses the type of dataset to be used.
+ *
+ * This function prompts the user to select a
+ * parsing option for the Water Management System.
+ */
 void Menu::Parsetype() {
     int c = true;
     string parsing;
@@ -43,6 +53,13 @@ void Menu::Parsetype() {
     this->manager = manager;
     startMenu();
 }
+
+/**
+ * @brief Starts the main menu of the water management system.
+ *
+ * The menu allows the user to select different options such as basic service metrics,
+ * reliability and sensitivity to failures, or exit the program.
+ */
 void Menu::startMenu() {
     int c = true;
     while (c) {
@@ -76,6 +93,10 @@ void Menu::startMenu() {
         }
     }
 }
+
+/**
+ * @brief Displays the metrics menu, allowing the user to choose various options related to service metrics.
+ */
 void Menu::MetricsMenu(){
     int c = true;
     while(c){
@@ -129,6 +150,10 @@ void Menu::MetricsMenu(){
         }
     }
 }
+
+/**
+ * @brief Displays the reliability menu, allowing the user to choose options related to system reliability.
+ */
 void Menu::RealibilityMenu() {
     int c = true;
     while(c){

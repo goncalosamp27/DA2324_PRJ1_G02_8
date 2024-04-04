@@ -1,12 +1,12 @@
-//
-// Created by joao on 18-03-2024.
-//
-
 #ifndef DA2324_PRJ1_G02_8_STATIONS_H
 #define DA2324_PRJ1_G02_8_STATIONS_H
 #include <string>
 using namespace std;
 
+/**
+ * @file Station.h
+ * @brief Declaration of the Station class.
+ */
 class Station {
 public:
     Station();

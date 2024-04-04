@@ -5,7 +5,9 @@
 #include <unordered_set>
 
 using namespace std;
-
+/**
+ * @brief The City class represents a city with its attributes (name, ID, Code, Demand and Population).
+ */
 class City {
 public:
     string getCityName() const;
