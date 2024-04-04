@@ -726,10 +726,9 @@ double findMinResidualAlongPath(Vertex<T> *s, Vertex<T> *t, Graph<T> *g) {
     return f;
 }
 // Function to augment flow along the augmenting path with the given flow value
-template <typename T, typename T1>
-void augmentFlowAlongPath(Vertex<T> *s, T1 city, double f, Graph<T> *g) {
+template <typename T>
+void augmentFlowAlongPath(Vertex<T> *s, Vertex<T>* t, double f, Graph<T> *g) {
 // Traverse the augmenting path and update the flow values accordingly
-    Vertex<string>* t = g->findVertex(city.getCityCode());
     for (auto v = t; v != s; ) {
         auto e = v->getPath();
         double flow = e->getFlow();
@@ -753,35 +752,17 @@ void initializeFlow(Graph<T> *g) {
 }
 
 // Main function implementing the Edmonds-Karp algorithm
-template <typename T, typename T1, typename T2>
-double edmondsKarp(Graph<T> *g, const T1 & source, const T2 & target) {
-// Find source and target vertices in the graph
-    double max_flow = source.getMaxDelivery();
-    double capacity = target.getCityDemand();
-    double flow = 0;
-    Vertex<T>* s = g->findVertex(source.getCode());
-    Vertex<T>* t = g->findVertex(target.getCityCode());
+template <typename T>
+void edmondsKarp(Graph<T> *g, string source, string target) {
+    Vertex<T>* s = g->findVertex(source);
+    Vertex<T>* t = g->findVertex(target);
 // Validate source and target vertices
     if (s == nullptr || t == nullptr || s == t)
         throw std::logic_error("Invalid source and/or target vertex");
 
-    while(findAugmentingPath(g, s, t) and max_flow > 0 and capacity > 0) {
+    while(findAugmentingPath(g, s, t)) {
         double f = findMinResidualAlongPath(s, t, g);
-        if (capacity <= f) {
-            augmentFlowAlongPath(s, target,capacity , g);
-            flow += capacity;
-            return flow;
-        }
-        else {capacity-=f;}
-        if (f > max_flow) {
-            augmentFlowAlongPath(s, target, max_flow, g);
-            flow += max_flow;
-            return flow;
-        }
-        max_flow -= f;
-        augmentFlowAlongPath(s, target, f, g);
-        flow += f;
+        augmentFlowAlongPath(s, t, f, g);
     }
-    return flow;
 }
 #endif /* DA_TP_CLASSES_GRAPH */

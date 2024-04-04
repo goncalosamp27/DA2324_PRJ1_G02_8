@@ -23,25 +23,27 @@ WManager::WManager(string parse) {
     station_map = parser.getStationMap();
     reservoir_map = parser.getReservoirMap();
     water_supply = parser.getWater_Suply();
+    super_source_sink();
+    initializeFlow(&water_supply);
+    edmondsKarp(&water_supply,"super_source","super_sink");
     set_all_flow();
 }
 double WManager::MaxFlow(string city) {
-    City city2;
-    double max_flow = 0;
-    double flow;
-    initializeFlow(&water_supply);
-    for (auto cit : city_map){
-        if(cit.first == city){
-            city2 = cit.second;
-        }
+    Vertex<string>*  city2 = water_supply.findVertex(city);
+    for(auto e : city2->getAdj()){
+            return e->getFlow();
     }
-    for (auto& reservoir : reservoir_map){
-        flow = edmondsKarp(&water_supply,reservoir.second,city2);
-        city2.setCityDemand(city2.getCityDemand() - flow);
-        max_flow += flow;
+}
+
+void WManager::super_source_sink() {
+    water_supply.addVertex("super_source");
+    water_supply.addVertex("super_sink");
+    for(auto reservoir : reservoir_map){
+        water_supply.addEdge("super_source",reservoir.first,reservoir.second.getMaxDelivery());
     }
-    city2.setCityDemand(city2.getCityDemand() + max_flow);
-    return max_flow;
+    for(auto station : city_map){
+        water_supply.addEdge(station.first,"super_sink",station.second.getCityDemand());
+    }
 }
 unordered_map<pair<string ,City>,double,WManager::HashCityFlow> WManager::getCityFlow() {
     return city_flow;

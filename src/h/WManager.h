@@ -16,6 +16,7 @@ public:
     WManager();
     WManager(string parse);
     double MaxFlow(string city);
+    void super_source_sink();
     void set_all_flow();
     void RemoveReservoir();
     void removePSinput();
@@ -46,6 +47,7 @@ private:
     unordered_map<string ,Station,Station::StationHash> station_map;
     Graph<string> water_supply;
     Parser parser;
+
 };
 
 
