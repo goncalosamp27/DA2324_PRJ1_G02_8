@@ -14,9 +14,11 @@ using namespace std;
 class WManager {
 public:
     WManager();
+    WManager(string parse);
     double MaxFlow(string city);
     void set_all_flow();
     void RemoveReservoir();
+    void removePSinput();
     void removePS();
     void removePipe();
     void TotalMaxFlow();

@@ -16,10 +16,14 @@ using namespace std;
 class Parser {
 public:
     Parser();
-    void parse_Cities();
-    void parse_Reservoirs();
-    void parse_Stations();
-    void parse_Pipes();
+    void parse_Cities_Large();
+    void parse_Reservoirs_Large();
+    void parse_Stations_Large();
+    void parse_Pipes_Large();
+    void parse_Cities_Small();
+    void parse_Reservoirs_Small();
+    void parse_Stations_Small();
+    void parse_Pipes_Small();
     Graph<string> getWater_Suply();
     unordered_map<string,Reservoir, Reservoir::ReservoirHash> getReservoirMap();
     unordered_map<string,City,City::HashCity> getCityMap();

@@ -10,7 +10,8 @@ using namespace std;
 
 class Menu {
 public:
-    Menu(WManager manager, Parser parser);
+    Menu( Parser parser);
+    void Parsetype();
     void startMenu();
     void MetricsMenu();
     void RealibilityMenu();
