@@ -99,20 +99,20 @@ void Menu::MetricsMenu(){
                 getline(cin>>ws,name);
                 for(auto city : city_flow){
                     if(name  == city.first.second.getCityName()){
-                        cout << city.first.second.getCityName() << " : " <<  city.second << " m3/s" << endl;
+                        cout << city.first.second.getCityCode()<<" , " << city.first.second.getCityName() << " : " <<  city.second << " m3/s" << endl;
                     }
                 }
                 break;
             case 2:
                 for(auto city : city_flow){
-                    cout << city.first.second.getCityName() << " : " <<  city.second  << " m3/s" << endl;
+                    cout << city.first.second.getCityCode()<<" , "<< city.first.second.getCityName() << " : " <<  city.second  << " m3/s" << endl;
                 }
                 break;
             case 3:
                 for (auto& city : city_flow){
                     max_flow = city.second;
                     if (max_flow < city.first.second.getCityDemand()){
-                        cout << city.first.second.getCityName() << " needs " <<  city.first.second.getCityDemand()  << " m3/s";
+                        cout <<city.first.second.getCityCode()<<" , "<< city.first.second.getCityName() << " needs " <<  city.first.second.getCityDemand()  << " m3/s";
                         cout << " and only has " << max_flow << " m3/s" << endl;
                     }
                 }
@@ -147,7 +147,16 @@ void Menu::RealibilityMenu() {
                 manager.RemoveReservoir();
                 break;
             case 2:
-                manager.removePS();
+                cout << "-------------------------------------" << endl;
+                cout << "|1-Pumping Station Code             |"<< endl;
+                cout << "|2-Station that can be removed      |"<< endl;
+                cout << "|3-Back                             |"<< endl;
+                cout << "-------------------------------------" << endl;
+                cout << "Choose an option: ";
+                int option1;
+                cin >> option1;
+                if(option1 == 1)manager.removePSinput();
+                if(option1 == 2)manager.removePS();
                 break;
             case 3:
                 cout << "-------------------------------------" << endl;
@@ -156,7 +165,7 @@ void Menu::RealibilityMenu() {
                 cout << "|3-Back                             |"<< endl;
                 cout << "-------------------------------------" << endl;
                 cout << "Choose an option: ";
-                int option1;
+                int option2;
                 cin >> option1;
                 if(option1 == 1)manager.removePipesCities();
                 if(option1 == 2)manager.removePipe();

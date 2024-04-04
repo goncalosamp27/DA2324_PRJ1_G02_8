@@ -75,8 +75,48 @@ void WManager::RemoveReservoir() {
     }
     reservoir_map.insert(old);
 }
-void WManager::removePS()
-{
+void WManager::removePSinput() {
+    string PS;
+    cout << "Code of the Pumping Station: ";
+    getline(cin >> ws, PS);
+    auto itr = station_map.find(PS);
+    if(itr == station_map.end()){
+        cout << "INVALID INPUT!\n";
+        return;
+    }
+    auto vertex = water_supply.findVertex(PS);
+    for (auto city: city_map) {
+        vector<pair<pair<string, string>, double>> edges;
+        for (auto e: vertex->getAdj()) {
+                    pair<pair<string, string>, double> temp = {{e->getOrig()->getInfo(), e->getDest()->getInfo()},
+                                                               e->getWeight()};
+                    edges.push_back(temp);
+        }
+        for (auto v: water_supply.getVertexSet()) {
+            for (auto e: v->getAdj()) {
+                if (e->getDest()->getInfo() == vertex->getInfo()) {
+                            pair<pair<string, string>, double> temp = {
+                                    {e->getOrig()->getInfo(), e->getDest()->getInfo()}, e->getWeight()};
+                            edges.push_back(temp);
+                }
+            }
+        }
+        int expected_val = city_flow.find({city})->second;
+        string ps = vertex->getInfo();
+        water_supply.removeVertex(vertex->getInfo());
+        int new_val = MaxFlow(city.first);
+        if (expected_val != new_val) {
+            cout << "Removing the Station " << PS << " will afect the value of the flow in the city "<< city.first << " , " << city.second.getCityName() << endl;
+            cout << "Old flow: "<<expected_val<<endl;
+            cout << "New flow: "<< new_val<< endl;
+        }
+        water_supply.addVertex(ps);
+        for (auto e: edges) {
+            water_supply.addEdge(e.first.first, e.first.second, e.second);
+        }
+    }
+}
+void WManager::removePS(){
     vector<pair<string,string>> removedPS;
     vector <string> res;
     for(auto vertex: water_supply.getVertexSet())
@@ -131,6 +171,11 @@ void WManager::removePipesCities() {
     string city;
     cout << "Code of the City: ";
     getline(cin >> ws, city);
+    auto itr = city_map.find(city);
+    if(itr == city_map.end()){
+        cout << "INVALID INPUT!\n";
+        return;
+    }
     for (auto vertex: water_supply.getVertexSet()) {
         City cidade = city_map.find(city)->second;
         for (auto edge: vertex->getAdj()) {
