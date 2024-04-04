@@ -3,11 +3,22 @@
 //
 
 #include "../h/WManager.h"
-WManager::WManager() {
-    parser.parse_Cities();
-    parser.parse_Reservoirs();
-    parser.parse_Stations();
-    parser.parse_Pipes();
+WManager::WManager(){
+    return;
+};
+WManager::WManager(string parse) {
+    if(parse == "large"){
+        parser.parse_Cities_Large();
+        parser.parse_Reservoirs_Large();
+        parser.parse_Stations_Large();
+        parser.parse_Pipes_Large();
+    }
+    if(parse == "small"){
+        parser.parse_Cities_Small();
+        parser.parse_Reservoirs_Small();
+        parser.parse_Stations_Small();
+        parser.parse_Pipes_Small();
+    }
     city_map = parser.getCityMap();
     station_map = parser.getStationMap();
     reservoir_map = parser.getReservoirMap();

@@ -4,11 +4,45 @@
 #include "../h/Menu.h"
 #include <iostream>
 
-Menu::Menu(WManager manager, Parser parser) {
-    this->manager = manager;
+Menu::Menu(Parser parser) {
     this->parser = parser;
 }
+void Menu::Parsetype() {
+    int c = true;
+    string parsing;
+    while(c){
+        cout << "---------------------------------------------" << endl;
+        cout << "|Welcome to the Water Management System     |" << endl;
+        cout << "|Select a parsing option                    |" << endl;
+        cout << "|1. SmallDataSet                            |" << endl;
+        cout << "|2. LargeDataSet                            |" << endl;
+        cout << "|3. Exit                                    |" << endl;
+        cout << "---------------------------------------------" << endl;
+        cout << "Choose an option: ";
+        int option;
+        cin >> option;
+        switch (option) {
+            case 1:
+                parsing = "small";
+                c = false;
+                break;
+            case 2:
+                parsing = "large";
+                c = false;
+                break;
+            case 3:
+                c = false;
+                cout << "Goodbye!" << endl;
+                return;
+            default:
+                cout << "Invalid Input!" << endl;
 
+        }
+    }
+    WManager manager(parsing);
+    this->manager = manager;
+    startMenu();
+}
 void Menu::startMenu() {
     int c = true;
     while (c) {
@@ -17,7 +51,8 @@ void Menu::startMenu() {
         cout << "|Please select an option                    |" << endl;
         cout << "|1. Basic Service Metrics                   |" << endl;
         cout << "|2. Reliability and Sensitivity to Failures |" << endl;
-        cout << "|3. Exit                                    |" << endl;
+        cout << "|3. Parse Type                              |" << endl;
+        cout << "|4. Exit                                    |" << endl;
         cout << "---------------------------------------------" << endl;
         cout << "Choose an option: ";
         int option;
@@ -30,8 +65,10 @@ void Menu::startMenu() {
                 RealibilityMenu();
                 break;
             case 3:
+                Parsetype();
+                break;
+            case 4:
                 c = false;
-                cout << "Goodbye!" << endl;
                 break;
             default:
                 cout << "Invalid Input!" << endl;

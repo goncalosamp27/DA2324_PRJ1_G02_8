@@ -2,9 +2,8 @@
 #include "src/h/WManager.h"
 #include "src/h/Menu.h"
 int main() {
-    WManager Manager;
     Parser parser;
-    Menu menu = Menu(Manager, parser);
-    menu.startMenu();
+    Menu menu = Menu( parser);
+    menu.Parsetype();
     return 0;
 }
