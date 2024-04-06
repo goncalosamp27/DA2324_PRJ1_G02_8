@@ -12,7 +12,7 @@ Menu::Menu(Parser parser) {
 }
 
 /**
- * @brief Parses the type of dataset to be used.
+ * @brief Choose the type of dataset to be used.
  *
  * This function prompts the user to select a
  * parsing option for the Water Management System.

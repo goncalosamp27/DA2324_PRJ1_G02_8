@@ -54,6 +54,15 @@ double WManager::MaxFlow(string city) {
         return e->getFlow();
     }
 }
+/**
+ * @brief Resets the graph an calculates the flow.
+ *
+ * This function performs a series of operations on the water supply graph to prepare it for flow calculations.
+ * It iterates over each city in the city map, removes all outgoing edges from the city to the super sink vertex,
+ * removes the super sink vertex from the graph, then calls `super_source_sink` to add a new super source and
+ * super sink, initializes flow in the graph, runs the Edmonds-Karp algorithm to find the maximum flow from the
+ * super source to the super sink, and finally removes the super source vertex from the graph.
+ */
 void WManager::geral(){
     for (auto city : city_map){
         Vertex<string>* city2 = water_supply.findVertex(city.first);
@@ -68,7 +77,15 @@ void WManager::geral(){
     removess();
 }
 
-
+/**
+ * @brief Adds a super source and a super sink to the water supply graph, and connects them appropriately.
+ *
+ * This function modifies the water supply graph by adding a "super source" and a "super sink" vertex.
+ * It then connects the super source to each reservoir vertex in the reservoir map with an edge whose weight
+ * is the maximum delivery capacity of the corresponding reservoir. Additionally, it connects each city vertex
+ * to the super sink with an edge whose weight is the water demand of the corresponding city.
+ *
+ */
 void WManager::super_source_sink() {
     water_supply.addVertex("super_source");
     water_supply.addVertex("super_sink");
@@ -79,6 +96,14 @@ void WManager::super_source_sink() {
         water_supply.addEdge(station.first,"super_sink",station.second.getCityDemand());
     }
 }
+/**
+ * @brief Removes the super source vertex from the water supply graph.
+ *
+ * This function removes the super source vertex from the water supply graph.
+ * It first finds the super source vertex in the graph, then iterates through
+ * its outgoing edges and removes each of them. After removing all outgoing edges,
+ * it removes the super source vertex itself from the graph.
+ */
 void WManager::removess(){
     Vertex<string>* ss = water_supply.findVertex("super_source");
     for(auto e : ss->getAdj()){
