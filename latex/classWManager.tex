@@ -1,0 +1,284 @@
+\hypertarget{classWManager}{}\doxysection{WManager Class Reference}
+\label{classWManager}\index{WManager@{WManager}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structWManager_1_1HashCityFlow}{Hash\+City\+Flow}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classWManager_a9fb04ab29b2ccc355ec99c2c0bec857a}\label{classWManager_a9fb04ab29b2ccc355ec99c2c0bec857a}} 
+\mbox{\hyperlink{classWManager_a9fb04ab29b2ccc355ec99c2c0bec857a}{WManager}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for \mbox{\hyperlink{classWManager}{WManager}} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classWManager_aceb6d568ab3fce54fa655aded49f2556}{WManager}} (string parse)
+\begin{DoxyCompactList}\small\item\em Parameterized constructor. Applies the parsing to either the large or the small data set according to the input. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classWManager_a2e947947221a343bcd29ecac592341af}{Max\+Flow}} (string city)
+\begin{DoxyCompactList}\small\item\em Computes the maximum flow for a given city. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWManager_a0a8d3752af17ec970973e98305a975f3}{super\+\_\+source\+\_\+sink}} ()
+\begin{DoxyCompactList}\small\item\em Adds a super source and a super sink to the water supply graph, and connects them appropriately. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classWManager_accfc0febe035cf83e68c4bee05bd0b25}\label{classWManager_accfc0febe035cf83e68c4bee05bd0b25}} 
+void \mbox{\hyperlink{classWManager_accfc0febe035cf83e68c4bee05bd0b25}{set\+\_\+all\+\_\+flow}} ()
+\begin{DoxyCompactList}\small\item\em Sets flow for all nodes in the water supply graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWManager_abdcb8644bcc20ca8d5fbaaad956823fa}{Remove\+Reservoir}} ()
+\begin{DoxyCompactList}\small\item\em Removes a reservoir. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWManager_a271d39724965b94b550eeb80fa709c5d}{removess}} ()
+\begin{DoxyCompactList}\small\item\em Removes the super source vertex from the water supply graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWManager_aa5a925424453296b678614615663796d}{remove\+PSinput}} ()
+\begin{DoxyCompactList}\small\item\em Removes a pumping station from the water supply graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWManager_a1a16d7d96a6bfef39d17421237d64d73}{remove\+PS}} ()
+\begin{DoxyCompactList}\small\item\em Removes all pumping stations that do not affect the flow in any city. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWManager_a1d18973974c604f3d0f344a57ce88b24}{remove\+Pipe}} ()
+\begin{DoxyCompactList}\small\item\em Removes each pipeline in the water supply graph and checks for flow deficits in all cities. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWManager_a010072eb75d0804054fc74d065d32d67}{Total\+Max\+Flow}} ()
+\begin{DoxyCompactList}\small\item\em Computes the total maximum flow for all cities. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWManager_a151917afe05ba2b383d6e0054e2e7a83}{remove\+Pipes\+Cities}} ()
+\begin{DoxyCompactList}\small\item\em Removes pipelines connected to a specified city and checks for flow deficits. \end{DoxyCompactList}\item 
+unordered\+\_\+map$<$ pair$<$ string,\mbox{\hyperlink{classCity}{City}} $>$, double, \mbox{\hyperlink{structWManager_1_1HashCityFlow}{Hash\+City\+Flow}} $>$ \mbox{\hyperlink{classWManager_ada1b5abb7517217a7eee3061386a8fc1}{get\+City\+Flow}} ()
+\begin{DoxyCompactList}\small\item\em Getter for city flow. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classWManager_aceb6d568ab3fce54fa655aded49f2556}\label{classWManager_aceb6d568ab3fce54fa655aded49f2556}} 
+\index{WManager@{WManager}!WManager@{WManager}}
+\index{WManager@{WManager}!WManager@{WManager}}
+\doxysubsubsection{\texorpdfstring{WManager()}{WManager()}}
+{\footnotesize\ttfamily WManager\+::\+WManager (\begin{DoxyParamCaption}\item[{string}]{parse }\end{DoxyParamCaption})}
+
+
+
+Parameterized constructor. Applies the parsing to either the large or the small data set according to the input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parse} & The parse string. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classWManager_ada1b5abb7517217a7eee3061386a8fc1}\label{classWManager_ada1b5abb7517217a7eee3061386a8fc1}} 
+\index{WManager@{WManager}!getCityFlow@{getCityFlow}}
+\index{getCityFlow@{getCityFlow}!WManager@{WManager}}
+\doxysubsubsection{\texorpdfstring{getCityFlow()}{getCityFlow()}}
+{\footnotesize\ttfamily unordered\+\_\+map$<$ pair$<$ string,\mbox{\hyperlink{classCity}{City}} $>$, double, \mbox{\hyperlink{structWManager_1_1HashCityFlow}{WManager\+::\+Hash\+City\+Flow}} $>$ WManager\+::get\+City\+Flow (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter for city flow. 
+
+\begin{DoxyReturn}{Returns}
+The city flow map. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWManager_a2e947947221a343bcd29ecac592341af}\label{classWManager_a2e947947221a343bcd29ecac592341af}} 
+\index{WManager@{WManager}!MaxFlow@{MaxFlow}}
+\index{MaxFlow@{MaxFlow}!WManager@{WManager}}
+\doxysubsubsection{\texorpdfstring{MaxFlow()}{MaxFlow()}}
+{\footnotesize\ttfamily double WManager\+::\+Max\+Flow (\begin{DoxyParamCaption}\item[{string}]{city }\end{DoxyParamCaption})}
+
+
+
+Computes the maximum flow for a given city. 
+
+
+\begin{DoxyItemize}
+\item Initializes local variables for computing the maximum flow.
+\item Iterates over the city map to find the city object corresponding to the input city name.
+\item Computes the flow from each reservoir to the given city using the Edmonds-\/\+Karp algorithm.
+\item Updates the city demand and accumulates the flow for each reservoir.
+\item Returns the maximum flow for the given city.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em city} & The city for which to compute the maximum flow. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum flow for the given city. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWManager_a1d18973974c604f3d0f344a57ce88b24}\label{classWManager_a1d18973974c604f3d0f344a57ce88b24}} 
+\index{WManager@{WManager}!removePipe@{removePipe}}
+\index{removePipe@{removePipe}!WManager@{WManager}}
+\doxysubsubsection{\texorpdfstring{removePipe()}{removePipe()}}
+{\footnotesize\ttfamily void WManager\+::remove\+Pipe (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Removes each pipeline in the water supply graph and checks for flow deficits in all cities. 
+
+
+\begin{DoxyItemize}
+\item Iterates over all vertices in the water supply graph.
+\item Iterates over all edges adjacent to each vertex.
+\item Removes the current pipeline temporarily.
+\item For each city in the city map\+:
+\begin{DoxyItemize}
+\item Computes the maximum flow after removing the pipeline.
+\item If the maximum flow is less than the city demand and differs from the existing flow in the city\+:
+\begin{DoxyItemize}
+\item Displays a message indicating the deficit in flow if the pipeline is removed.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Restores the removed pipeline. 
+\end{DoxyItemize}\mbox{\Hypertarget{classWManager_a151917afe05ba2b383d6e0054e2e7a83}\label{classWManager_a151917afe05ba2b383d6e0054e2e7a83}} 
+\index{WManager@{WManager}!removePipesCities@{removePipesCities}}
+\index{removePipesCities@{removePipesCities}!WManager@{WManager}}
+\doxysubsubsection{\texorpdfstring{removePipesCities()}{removePipesCities()}}
+{\footnotesize\ttfamily void WManager\+::remove\+Pipes\+Cities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Removes pipelines connected to a specified city and checks for flow deficits. 
+
+
+\begin{DoxyItemize}
+\item Prompts the user to input the code of the city.
+\item Checks if the city exists in the city map.
+\item If the city doesn\textquotesingle{}t exist, displays an error message and returns.
+\item Iterates over all vertices in the water supply graph\+:
+\begin{DoxyItemize}
+\item Retrieves the city object corresponding to the specified city code.
+\item Iterates over all edges adjacent to the current vertex\+:
+\begin{DoxyItemize}
+\item Removes the edge temporarily and recomputes the maximum flow for the specified city.
+\item If the maximum flow is less than the city demand and differs from the existing flow in the city\+:
+\begin{DoxyItemize}
+\item Displays a message indicating the deficit in flow if the pipeline is removed.
+\end{DoxyItemize}
+\item Restores the removed edge.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classWManager_a2e947947221a343bcd29ecac592341af}{Max\+Flow(string city)}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classWManager_a1a16d7d96a6bfef39d17421237d64d73}\label{classWManager_a1a16d7d96a6bfef39d17421237d64d73}} 
+\index{WManager@{WManager}!removePS@{removePS}}
+\index{removePS@{removePS}!WManager@{WManager}}
+\doxysubsubsection{\texorpdfstring{removePS()}{removePS()}}
+{\footnotesize\ttfamily void WManager\+::remove\+PS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Removes all pumping stations that do not affect the flow in any city. 
+
+
+\begin{DoxyItemize}
+\item Iterates over all vertices in the water supply graph.
+\item For each vertex representing a pumping station\+:
+\begin{DoxyItemize}
+\item Iterates over all cities in the city map\+:
+\begin{DoxyItemize}
+\item Collects edges connected to the pumping station and adjacent vertices.
+\item Computes the expected flow value for the current city before removal of the pumping station.
+\item Removes the pumping station from the water supply graph and recomputes the maximum flow for the city.
+\item If the expected flow value differs from the new flow value, adds the pumping station to the list of removed pumping stations.
+\item Re-\/adds the pumping station to the water supply graph and restores its edges.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Iterates over all pumping stations in the station map\+:
+\begin{DoxyItemize}
+\item If a pumping station is not in the list of removed pumping stations, displays a message indicating that it will not affect the flow in any city if removed. 
+\end{DoxyItemize}
+\end{DoxyItemize}\mbox{\Hypertarget{classWManager_aa5a925424453296b678614615663796d}\label{classWManager_aa5a925424453296b678614615663796d}} 
+\index{WManager@{WManager}!removePSinput@{removePSinput}}
+\index{removePSinput@{removePSinput}!WManager@{WManager}}
+\doxysubsubsection{\texorpdfstring{removePSinput()}{removePSinput()}}
+{\footnotesize\ttfamily void WManager\+::remove\+PSinput (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Removes a pumping station from the water supply graph. 
+
+
+\begin{DoxyItemize}
+\item Prompts the user to input the code of the pumping station.
+\item Checks if the pumping station exists in the station map.
+\item If the pumping station doesn\textquotesingle{}t exist, displays an error message and returns.
+\item Finds the vertex corresponding to the pumping station in the water supply graph.
+\item Iterates over all cities in the city map\+:
+\begin{DoxyItemize}
+\item Collects edges connected to the pumping station and adjacent vertices.
+\item Computes the expected flow value for the current city before removal of the pumping station.
+\item Removes the pumping station from the water supply graph and recomputes the maximum flow for the city.
+\item If the expected flow value differs from the new flow value\+:
+\begin{DoxyItemize}
+\item Displays a warning message indicating the impact on the city\textquotesingle{}s flow value.
+\item Displays the old and new flow values for comparison.
+\end{DoxyItemize}
+\item Re-\/adds the pumping station to the water supply graph and restores its edges.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classWManager_a2e947947221a343bcd29ecac592341af}{Max\+Flow(string city)}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classWManager_abdcb8644bcc20ca8d5fbaaad956823fa}\label{classWManager_abdcb8644bcc20ca8d5fbaaad956823fa}} 
+\index{WManager@{WManager}!RemoveReservoir@{RemoveReservoir}}
+\index{RemoveReservoir@{RemoveReservoir}!WManager@{WManager}}
+\doxysubsubsection{\texorpdfstring{RemoveReservoir()}{RemoveReservoir()}}
+{\footnotesize\ttfamily void WManager\+::\+Remove\+Reservoir (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Removes a reservoir. 
+
+
+\begin{DoxyItemize}
+\item Prompts the user to input the code of the reservoir.
+\item Checks if the reservoir exists in the water supply graph.
+\item If the reservoir doesn\textquotesingle{}t exist, displays an error message and returns.
+\item Finds the reservoir in the reservoir map.
+\item If the reservoir is not found, displays an error and returns.
+\item Backs up the reservoir data before removal.
+\item Removes the reservoir from the reservoir map.
+\item Iterates over all cities in the city map.
+\begin{DoxyItemize}
+\item Computes the maximum flow for each city after reservoir removal.
+\item Finds the city-\/flow pair corresponding to the current city in the city flow map.
+\item If the maximum flow has changed, displays the city and its updated maximum flow.
+\end{DoxyItemize}
+\item Re-\/inserts the removed reservoir back into the reservoir map. 
+\end{DoxyItemize}\mbox{\Hypertarget{classWManager_a271d39724965b94b550eeb80fa709c5d}\label{classWManager_a271d39724965b94b550eeb80fa709c5d}} 
+\index{WManager@{WManager}!removess@{removess}}
+\index{removess@{removess}!WManager@{WManager}}
+\doxysubsubsection{\texorpdfstring{removess()}{removess()}}
+{\footnotesize\ttfamily void WManager\+::removess (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Removes the super source vertex from the water supply graph. 
+
+This function removes the super source vertex from the water supply graph. It first finds the super source vertex in the graph, then iterates through its outgoing edges and removes each of them. After removing all outgoing edges, it removes the super source vertex itself from the graph. \mbox{\Hypertarget{classWManager_a0a8d3752af17ec970973e98305a975f3}\label{classWManager_a0a8d3752af17ec970973e98305a975f3}} 
+\index{WManager@{WManager}!super\_source\_sink@{super\_source\_sink}}
+\index{super\_source\_sink@{super\_source\_sink}!WManager@{WManager}}
+\doxysubsubsection{\texorpdfstring{super\_source\_sink()}{super\_source\_sink()}}
+{\footnotesize\ttfamily void WManager\+::super\+\_\+source\+\_\+sink (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Adds a super source and a super sink to the water supply graph, and connects them appropriately. 
+
+This function modifies the water supply graph by adding a \char`\"{}super source\char`\"{} and a \char`\"{}super sink\char`\"{} vertex. It then connects the super source to each reservoir vertex in the reservoir map with an edge whose weight is the maximum delivery capacity of the corresponding reservoir. Additionally, it connects each city vertex to the super sink with an edge whose weight is the water demand of the corresponding city. \mbox{\Hypertarget{classWManager_a010072eb75d0804054fc74d065d32d67}\label{classWManager_a010072eb75d0804054fc74d065d32d67}} 
+\index{WManager@{WManager}!TotalMaxFlow@{TotalMaxFlow}}
+\index{TotalMaxFlow@{TotalMaxFlow}!WManager@{WManager}}
+\doxysubsubsection{\texorpdfstring{TotalMaxFlow()}{TotalMaxFlow()}}
+{\footnotesize\ttfamily void WManager\+::\+Total\+Max\+Flow (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Computes the total maximum flow for all cities. 
+
+
+\begin{DoxyItemize}
+\item Iterates over all cities in the city flow map.
+\item Accumulates the maximum flow values for all cities.
+\item Displays the total maximum flow. 
+\end{DoxyItemize}
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/h/\mbox{\hyperlink{WManager_8h}{WManager.\+h}}\item 
+src/cpp/WManager.\+cpp\end{DoxyCompactItemize}
