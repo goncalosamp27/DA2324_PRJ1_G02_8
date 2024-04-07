@@ -1,0 +1,16 @@
+void Balanceload(Graph g){
+	int count = 0;
+	double flow = 0.0;
+	for(pipe : g.pipes){
+		count++;
+		flow+=pipe.getFlow();
+	}
+	double avg = flow/count;
+	while(findAugmentingPathDFS(g, s, t)) {
+		double f = findMinResidualAlongPathDFS(s, t, g);
+		if (f > avg){
+			f = avg;
+		}
+		augmentFlowAlongPathDFS(s, t, f, g);
+	}
+}
